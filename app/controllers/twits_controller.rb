@@ -1,20 +1,20 @@
 class TwitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_from_params, only: %i[ index create destroy edit update ]
+  before_action :user_from_params, only: %i[ index create destroy ]
   def index
     @twits = @user.twits
   end
 
-  def new
-    @twit = Twit.new
-  end
-
   def create
-    @twit = @user.twits.build(twit_params)
-    byebug
+    @twit = @user.twits.create(twit_params)
+    redirect_to user_twits_path(@user)
   end
 
   def destroy
+    @twit = Twit.find(params[:id])
+    @twit.destroy
+
+    redirect_to user_twits_path(@user)
   end
 
   private

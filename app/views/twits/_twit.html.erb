@@ -1,0 +1,4 @@
+<li>
+  <p><strong><%= twit.user.username %></strong>  <%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete %></p>
+  <p><%= twit.body %></p>
+</li>

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users
-  
-  resources :users do
-    resources :twits
+
+  resources :user do
+    resources :twits, only: %i[index new create destroy]
   end
   
   root 'home#index'

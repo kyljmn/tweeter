@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to user.username, user_path(user) %></td>
+  <% if current_user.followings.exists?(user.id) %>
+    <td><%= link_to "unfollow", unfollow_user_path(user), method: :delete %></td>
+  <% elsif current_user.id == user.id %>
+    <td></td>
+  <% else %>
+    <td><%= link_to "follow", follow_user_path(user), method: :post %></td>
+  <% end %>
+</tr>

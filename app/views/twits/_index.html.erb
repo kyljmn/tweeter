@@ -1,0 +1,6 @@
+<% if current_user.id == user.id %>
+  <%= render 'twits/form' %>
+<% end %>
+<% if user.twits.any? %>
+  <%= render partial:'twits/table', locals: { twits: user.twits }%>
+<% end %>

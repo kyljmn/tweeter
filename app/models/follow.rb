@@ -1,6 +1,6 @@
 class Follow < ApplicationRecord
-  belongs_to :follower, foreign_key: 'follower_id', class_name: 'User'
-  belongs_to :followee, foreign_key: 'followee_id', class_name: 'User'
+  belongs_to :follower, foreign_key: :follower_id, class_name: 'User'
+  belongs_to :following, foreign_key: :following_id, class_name: 'User'
 
-  validates :follower, uniqueness: { scope: :followee }
+  validates :follower, uniqueness: { scope: :following }
 end

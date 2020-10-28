@@ -10,14 +10,14 @@ class FollowController < ApplicationController
     @follows = @user.followers
   end
 
-  def create
-    Follow.build(follower: current_user.id, following: @following.id)
+  def follow
+    @follow = Follow.create({:follower => current_user, :following => @following})
     byebug
     redirect_to user_twits_path
   end
 
-  def destroy
-    @follow = Follow.find_by("follower = ? AND following = ?", current_user.id, @following.id)
+  def unfollow
+    @follow = Follow.find_by("follower_id = ? AND following_id = ?", current_user.id, @following.id)
     byebug
   end
 

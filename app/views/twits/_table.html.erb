@@ -1,6 +1,11 @@
 <h1>Tweets</h1>
-<ul>
-  <% @twits.map do |twit| %>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Tweet</th>
+    <th>Action</th>
+  </tr>
+  <% twits.map do |twit| %>
     <%= render twit %>
   <% end %>
-</ul>
+</table>

@@ -1,0 +1,9 @@
+<table>
+  <tr>
+    <th>Users</th>
+    <th>Action</th>
+  </tr>
+  <% users.map do |user| %>
+    <%= render partial: "follow/user", locals: { user: user } %>
+  <% end %>
+</table>

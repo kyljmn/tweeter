@@ -15,7 +15,16 @@ class TwitsController < ApplicationController
     redirect_to user_path(@user)
   end
 
-  def
+  def retwit
+    @retwit = Retwit.create({:twit => @twit, :retwiter => current_user})
+    redirect_to user_path(current_user)
+  end
+
+  def unretwit
+    @retwit = Retwit.find_by(twit: params[:id], retwiter: current_user)
+    @retwit.destroy
+    redirect_to user_path(current_user)
+  end
 
   private
     def user_from_params

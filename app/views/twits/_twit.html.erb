@@ -1,5 +1,16 @@
 <tr>
-  <td><%= twit.user.username %></td>  
+  <td><%= link_to twit.user.username, user_path(twit.user) %></td>  
   <td><%= twit.body %></td>
-  <td><%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete %></td>
+  <td>
+    <% if twit.user.id == current_user.id %>
+      <%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete %>
+    <% elsif !twit.retwits.exists?(retwiter: current_user) %>
+      <%= link_to "Retwit", retwit_twit_path(twit), method: :post %>
+    <% else%>
+      <%= link_to "Unretwit", unretwit_twit_path(twit), method: :delete %>
+    <% end %>
+  </td>
+  <% if defined? retwit %>
+    <td>retweeted by <%= link_to retwit.retwiter.username, user_path(retwit.retwiter) %></td>
+  <% end %>
 </tr>

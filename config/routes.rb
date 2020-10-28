@@ -1,15 +1,8 @@
 Rails.application.routes.draw do
-  get 'user/index'
-  get 'user/show'
   devise_for :users
 
   resources :user, only: %i[index show] do
-    resources :twits, only: %i[create destroy] do
-      member do
-        post 'retwit'
-        delete 'unretwit'
-      end
-    end
+    resources :twits, only: %i[create destroy]
     member do
       get 'follower_index', controller: 'follow'
       get 'following_index', controller: 'follow'
@@ -18,5 +11,12 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :twits, only: [] do
+    member do
+      post 'retwit'
+      delete 'unretwit'
+    end
+  end
+
   root 'home#index'
 end

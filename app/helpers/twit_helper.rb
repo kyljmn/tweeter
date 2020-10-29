@@ -17,4 +17,8 @@ module TwitHelper
       link_to "Unretwit", unretwit_twit_path(twit), method: :delete
     end
   end
+
+  def render_body(twit)
+    twit.body if !twit.mentions.any?
+  end
 end

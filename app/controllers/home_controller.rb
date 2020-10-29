@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     if !user_signed_in?
       redirect_to new_user_session_path 
     else
+      @twit = Twit.new()
       @user = User.find(current_user.id)
       relevant_users = @user.following_ids + [@user.id]
       @twits = Twit.where(user: relevant_users).to_a

@@ -1,5 +1,18 @@
 <h1> New Tweet </h1>
-<%= form_with scope: :twit, url: user_twits_path(current_user.id), local: true do |form| %>
+<%= form_with model: @twit, url: user_twits_path(current_user.id), local: true do |form| %>
+    <% if @twit.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@twit.errors.count, "error") %> prohibited
+        this twit from being saved:
+      </h2>
+      <ul>
+        <% @twit.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <p>
     <%= form.text_area :body %>
   </p>

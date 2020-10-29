@@ -4,6 +4,7 @@ class UserController < ApplicationController
   end
 
   def show
+    @twit = Twit.new()
     @user = User.find(params[:id])
     @twits = Twit.where(user: @user).to_a
     @retwits = Retwit.where(retwiter: @user).to_a

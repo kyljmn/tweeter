@@ -6,6 +6,15 @@ class TwitsController < ApplicationController
   def create
     @twit = @user.twits.new(twit_params)
     if @twit.save
+      # extract usernames from twit body
+      # done after @twit.save so @twit has an id
+      mentioned_usernames = twit_params["body"].scan(/@(\w+)/).flatten.uniq
+      if !mentioned_usernames.empty?
+        mentioned_usernames.each do |username|
+          mentioned_user = User.find_by(username: username)
+          @mention = Mention.create(user: mentioned_user, twit: @twit)
+        end
+      end
       redirect_to user_path(@user)
     else
       @all = TwitsService.get_twits_retwits(@user)

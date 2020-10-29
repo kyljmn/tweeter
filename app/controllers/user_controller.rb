@@ -6,6 +6,6 @@ class UserController < ApplicationController
   def show
     @twit = Twit.new()
     @user = User.find(params[:id])
-    @all = TwitsServices.get_twits_retwits(@user)
+    @all = TwitsService.get_twits_retwits(@user)
   end
 end

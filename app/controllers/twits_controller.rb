@@ -8,7 +8,7 @@ class TwitsController < ApplicationController
     if @twit.save
       redirect_to user_path(@user)
     else
-      @all = TwitsServices.get_twits_retwits(@user)
+      @all = TwitsService.get_twits_retwits(@user)
       render 'user/show'
     end
   end

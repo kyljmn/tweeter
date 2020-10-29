@@ -8,9 +8,7 @@ class TwitsController < ApplicationController
     if @twit.save
       redirect_to user_path(@user)
     else
-      @twits = Twit.where(user: @user).to_a
-      @retwits = Retwit.where(retwiter: @user).to_a
-      @all = (@twits + @retwits).sort_by(&:created_at).reverse
+      @all = helpers.get_twits_retwits(@user)
       render 'user/show'
     end
   end

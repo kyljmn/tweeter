@@ -6,10 +6,6 @@
     <th>Action</th>
   </tr>
   <% twits.map do |twit| %>
-    <% if twit.class.name == "Twit" %>
-      <%= render twit %>
-    <% elsif twit.class.name == "Retwit" %>
-      <%= render partial:"twits/twit", locals: { twit: twit.twit, retwit: twit } %>
-    <% end %>
+    <%= render_twit(twit) %>
   <% end %>
 </table>

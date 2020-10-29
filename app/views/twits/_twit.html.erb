@@ -1,5 +1,10 @@
 <tr>
-  <td><%= twit.user.username %></td>  
+  <td><%= link_to twit.user.username, user_path(twit.user) %></td>  
   <td><%= twit.body %></td>
-  <td><%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete %></td>
+  <td>
+    <%= render_action(twit) %>
+  </td>
+  <% if defined? retwit %>
+    <td>retweeted by <%= link_to retwit.retwiter.username, user_path(retwit.retwiter) %></td>
+  <% end %>
 </tr>

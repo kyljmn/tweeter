@@ -1,6 +1,6 @@
 <h1><%= current_user.username %></h1>
 <h2><%= current_user.first_name + " " + current_user.last_name %></h2>
 <%= render 'twits/form' %>
-<% if @twits.any? %>
-  <%= render partial:'twits/table', locals: { twits: @twits }%>
+<% if @all.any? %>
+  <%= render partial:'twits/table', locals: { twits: @all }%>
 <% end %>

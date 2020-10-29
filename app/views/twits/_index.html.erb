@@ -2,5 +2,5 @@
   <%= render 'twits/form' %>
 <% end %>
 <% if user.twits.any? %>
-  <%= render partial:'twits/table', locals: { twits: user.twits }%>
+  <%= render partial:'twits/table', locals: { twits: user.twits.reverse }%>
 <% end %>

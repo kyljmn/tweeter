@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_28_012424) do
+ActiveRecord::Schema.define(version: 2020_10_28_095929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2020_10_28_012424) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id", unique: true
+  end
+
+  create_table "retwits", force: :cascade do |t|
+    t.integer "twit_id"
+    t.integer "retwiter_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["twit_id", "retwiter_id"], name: "index_retwits_on_twit_id_and_retwiter_id", unique: true
   end
 
   create_table "twits", force: :cascade do |t|

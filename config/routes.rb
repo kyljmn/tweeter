@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'user/index'
-  get 'user/show'
   devise_for :users
 
   resources :user, only: %i[index show] do
@@ -13,5 +11,12 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :twits, only: [] do
+    member do
+      post 'retwit'
+      delete 'unretwit'
+    end
+  end
+
   root 'home#index'
 end

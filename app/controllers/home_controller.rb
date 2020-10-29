@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       @twit = Twit.new()
       @user = User.find(current_user.id)
       relevant_users = @user.following_ids + [@user.id]
-      @all = helpers.get_twits_retwits(relevant_users)
+      @all = TwitsService.get_twits_retwits(relevant_users)
     end
   end
 end

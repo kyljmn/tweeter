@@ -52,7 +52,6 @@ class TwitsController < ApplicationController
         mentioned_usernames.each do |username|
           mentioned_user = User.find_by(username: username)
           @mention = Mention.create(user: mentioned_user, twit: @twit)
-          byebug
         end
       end
     end

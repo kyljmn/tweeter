@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       @twit = Twit.new()
       @user = User.find(current_user.id)
       relevant_users = @user.following_ids + [@user.id]
-      @all = TwitsService.get_twits_retwits(relevant_users)
+      @pager = PagesService.new('post', relevant_users, params.fetch(:page, 1).to_i)
     end
   end
 end

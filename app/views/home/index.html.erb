@@ -1,6 +1,6 @@
 <h1><%= current_user.username %></h1>
 <h2><%= current_user.first_name + " " + current_user.last_name %></h2>
 <%= render 'twits/form' %>
-<% if @all.any? %>
-  <%= render partial:'twits/table', locals: { posts: @all }%>
+<% if @pager.get_posts.any? %>
+  <%= render partial:'twits/table', locals: { pager: @pager }%>
 <% end %>

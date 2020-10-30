@@ -4,8 +4,14 @@ class UserController < ApplicationController
   end
 
   def show
-    @twit = Twit.new()
+    @twit = Twit.new(twit_params)
     @user = User.find(params[:id])
-    @all = TwitsService.get_twits_retwits(@user)
+    @pager = PagesService.new('post', @user, params.fetch(:page, 1).to_i)
   end
+
+  private
+    def twit_params
+      return nil unless !params[:twit].nil?
+      params.fetch(:twit, nil).permit(:body)
+    end
 end

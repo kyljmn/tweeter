@@ -10,6 +10,6 @@
 <% if @user.id == current_user.id %>
   <%= render 'twits/form' %>
 <% end %>
-<% if @all.any? %>
-  <%= render partial:'twits/table', locals: { posts: @all }%>
+<% if @pager.get_posts.any? %>
+  <%= render partial:'twits/table', locals: { pager: @pager }%>
 <% end %>

@@ -11,5 +11,5 @@
   <%= render 'twits/form' %>
 <% end %>
 <% if @all.any? %>
-  <%= render partial:'twits/table', locals: { twits: @all }%>
+  <%= render partial:'twits/table', locals: { posts: @all }%>
 <% end %>

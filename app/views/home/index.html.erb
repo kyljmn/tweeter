@@ -2,5 +2,5 @@
 <h2><%= current_user.first_name + " " + current_user.last_name %></h2>
 <%= render 'twits/form' %>
 <% if @all.any? %>
-  <%= render partial:'twits/table', locals: { twits: @all }%>
+  <%= render partial:'twits/table', locals: { posts: @all }%>
 <% end %>

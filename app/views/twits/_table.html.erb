@@ -5,7 +5,7 @@
     <th>Tweet</th>
     <th>Action</th>
   </tr>
-  <% pager.get_posts.map do |post| %>
+  <% pager.get_items.map do |post| %>
     <%= render_twit(post.postable) %>
   <% end %>
 </table>

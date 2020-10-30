@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :mentions, dependent: :destroy
 
   has_many :posts, foreign_key: :user_id, class_name: 'Post', dependent: :destroy
+  has_many :notifications, foreign_key: :user_id, class_name: 'Notification', dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

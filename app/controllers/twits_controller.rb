@@ -1,7 +1,11 @@
 class TwitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_from_params, only: %i[ index create destroy ]
-  before_action :twit_from_params, only: %i[ destroy retwit unretwit ]
+  before_action :user_from_params, only: %i[ index show create destroy ]
+  before_action :twit_from_params, only: %i[ show destroy retwit unretwit ]
+
+  def show
+    render "twits/show", locals: { twit: @twit }
+  end
 
   def create
     @twit = @user.twits.new(twit_params)

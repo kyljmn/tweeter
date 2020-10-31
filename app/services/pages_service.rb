@@ -9,13 +9,15 @@ class PagesService
   
   def get_items
     if @type == 'post'
-      return Post.where(user: @people).order(created_at: :desc).offset((@page - 1)*POST_PER_PAGE).limit(POST_PER_PAGE)
+      return Post.where(user: @people).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'following'
-      return @people.followings.order(created_at: :desc).offset((@page - 1)*POST_PER_PAGE).limit(POST_PER_PAGE)
+      return @people.followings.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'followers'
-      return @people.followers.order(created_at: :desc).offset((@page - 1)*POST_PER_PAGE).limit(POST_PER_PAGE)
+      return @people.followers.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'user_index'
-      return @people.order(created_at: :desc).offset((@page - 1)*POST_PER_PAGE).limit(POST_PER_PAGE)
+      return @people.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
+    elsif @type == 'notification'
+      return Notification.where(user: @people).order(is_read: :asc).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     end
   end
   
@@ -28,6 +30,8 @@ class PagesService
       return count(@people.followers.size)
     elsif @type == 'user_index'
       return count(@people.size)
+    elsif @type == 'notification'
+      return count(Notification.where(user: @people).size)
     end
   end
 

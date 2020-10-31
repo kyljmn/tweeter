@@ -18,5 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notification, only: [:index] do
+    member do
+      patch 'read'
+    end
+  end
+
   root 'home#index'
 end

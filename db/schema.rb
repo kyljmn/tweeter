@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_060353) do
+ActiveRecord::Schema.define(version: 2020_10_30_105536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2020_10_30_060353) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["twit_id"], name: "index_mentions_on_twit_id"
     t.index ["user_id"], name: "index_mentions_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.integer "user_id"
+    t.boolean "is_read", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "posts", force: :cascade do |t|

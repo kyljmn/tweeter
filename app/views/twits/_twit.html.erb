@@ -2,6 +2,7 @@
   <td><%= link_to twit.user.username, user_path(twit.user) %></td>  
   <td><%= render_body(twit) %></td>
   <td>
+    <%= link_to "Show", user_twit_path(twit.user.id, twit) %>
     <%= render_action(twit) %>
   </td>
   <% if defined? retwit %>

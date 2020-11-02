@@ -17,6 +17,7 @@
       <%= link_to 'Users', user_index_path %> ||
       <% if user_signed_in? %>
         <%= link_to current_user.username, user_path(current_user) %> ||
+        <%= link_to "Notifications", notification_index_path %> ||
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Sign In', new_user_session_path %> ||

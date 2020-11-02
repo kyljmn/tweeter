@@ -1,0 +1,7 @@
+<% if pager.count_pages > 1 %>
+<div>
+  <% (1..pager.count_pages).each do |page| %>
+    <%= link_to page.to_s, request.path + "?page=#{page}" %>
+  <% end %>
+</div>
+<% end %>

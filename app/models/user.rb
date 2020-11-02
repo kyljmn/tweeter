@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :retwits, foreign_key: :retwiter_id, class_name: 'Retwit', dependent: :destroy
 
   has_many :mentions, dependent: :destroy
+
+  has_many :posts, foreign_key: :user_id, class_name: 'Post', dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

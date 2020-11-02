@@ -5,7 +5,8 @@
     <th>Tweet</th>
     <th>Action</th>
   </tr>
-  <% twits.map do |twit| %>
-    <%= render_twit(twit) %>
+  <% pager.get_items.map do |post| %>
+    <%= render_twit(post.postable) %>
   <% end %>
 </table>
+ <%= render partial:'pagination/pages', locals: { pager: pager} %>

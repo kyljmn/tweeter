@@ -11,8 +11,7 @@ class TwitsController < ApplicationController
       mention_creator
       redirect_to user_path(@user)
     else
-      @all = TwitsService.get_twits_retwits(@user)
-      render 'user/show'
+      redirect_to user_path(@user, twit: twit_params)
     end
   end
 

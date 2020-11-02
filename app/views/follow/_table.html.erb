@@ -3,7 +3,8 @@
     <th>Users</th>
     <th>Action</th>
   </tr>
-  <% users.map do |user| %>
+  <% pager.get_items.map do |user| %>
     <%= render partial: "follow/user", locals: { user: user } %>
   <% end %>
 </table>
+<%= render partial:'pagination/pages', locals: { pager: pager} %>

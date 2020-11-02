@@ -7,6 +7,7 @@
 .sticky-nav {
   padding: 16px;
   display: flex;
+  width: 15%;
   flex-flow: column nowrap;
   position: fixed;
   top: 0; left: 0;
@@ -18,10 +19,10 @@
   > .item {
     display: flex;
     align-items: center;
-    width: 80%;
-    margin: 8px;
-    border-radius: 10px;
+    margin: 4px;
+    border-radius: 8px;
     padding: 8px;
+    width: auto;
 
     &:hover {
       background-color: $t-highlight;

@@ -1,6 +1,6 @@
 <%= form_with model: @twit, url: user_twits_path(current_user.id), local: true, class: "twit-form" do |form| %>
     <% if @twit.errors.any? %>
-    <div id="error_explanation">
+    <div class="field">
       <h2>
         <%= pluralize(@twit.errors.count, "error") %> prohibited
         this twit from being saved:

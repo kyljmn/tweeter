@@ -15,7 +15,7 @@ class TwitsController < ApplicationController
       mention_creator
       redirect_to user_path(@user)
     else
-      redirect_to user_path(@user, twit: twit_params)
+      redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
     end
   end
 

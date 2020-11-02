@@ -1,0 +1,18 @@
+.pages-container {
+  padding: 16px;
+  display: flex;
+  flex-flow: row wrap;
+
+  > .link {
+    height: 16px;
+    width: 16px;
+
+    &.-active {
+      color: $t-blue;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

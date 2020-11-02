@@ -1,0 +1,27 @@
+.auth-container {
+  padding: 16px;
+}
+
+.new_user > .field {
+  margin-bottom: 8px;
+}
+.new_user > .field > .label {
+  margin-bottom: 4px;
+}
+.new_user > .field > .input {
+  padding: 8px;
+  border-radius: 8px;
+  height: 32px;
+  width: 256px;
+  border: 1px solid black;
+}
+
+.auth-button {
+  display: flex;
+  align-items: center;
+  margin: 4px;
+  border-radius: 8px;
+  padding: 8px;
+  width: 64px;
+  height: 32px;
+}

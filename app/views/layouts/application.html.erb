@@ -4,7 +4,6 @@
     <title>Tweeter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <stylesheet>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,6 +12,11 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <div class="content-container">
+      <% if user_signed_in? %>
+        <div class="user-list">
+          <%= render "user/list" %>
+        </div>
+      <% end %>
       <%= render "shared/nav" %>
       <div class="content">
         <%= yield %>

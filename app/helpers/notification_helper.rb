@@ -19,7 +19,7 @@ module NotificationHelper
     if notif.is_read
       return "<span class=\"read\">Read</span>".html_safe
     else
-      return "<span class=\"unread\">Read</span>".html_safe
+      return "<span class=\"unread\">Unread</span>".html_safe
     end
   end
 end

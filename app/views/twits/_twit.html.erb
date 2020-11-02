@@ -1,5 +1,3 @@
-
-
   <div class="twit">
     <% if defined? retwit %>
       <div class="retweet">retweeted by <%= link_to retwit.retwiter.username, user_path(retwit.retwiter) %></div>
@@ -19,6 +17,3 @@
       <%= render_action(twit) %>
     </div>
   </div>    
-
-    
-   

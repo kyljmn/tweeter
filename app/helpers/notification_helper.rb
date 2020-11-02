@@ -1,6 +1,6 @@
 module NotificationHelper
   def notif_link(notif)
-      return link_to notif_message(notif), read_notification_path(notif), method: :patch
+      return link_to notif_message(notif), read_notification_path(notif), method: :patch, class: "link"
   end
 
   def notifying_user(notif)
@@ -17,9 +17,9 @@ module NotificationHelper
 
   def notif_status(notif)
     if notif.is_read
-      return "Read"
+      return "<span class=\"read\">Read</span>".html_safe
     else
-      return "Unread"
+      return "<span class=\"unread\">Unread</span>".html_safe
     end
   end
 end

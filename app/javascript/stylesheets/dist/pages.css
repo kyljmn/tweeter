@@ -1,0 +1,12 @@
+.pages-container {
+  padding: 16px;
+  display: flex;
+  flex-flow: row wrap;
+}
+.pages-container > .link {
+  height: 16px;
+  width: 16px;
+}
+.pages-container > .link.-active {
+  text-decoration: underline;
+}

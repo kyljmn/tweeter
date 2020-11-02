@@ -1,0 +1,16 @@
+.content-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 100%;
+}
+.content-container .nav-bar {
+  height: 100%;
+}
+.content-container .content {
+  padding: 16px;
+}
+.content-container .content .header {
+  font-weight: bold;
+  font-size: ms(3);
+}

@@ -1,0 +1,10 @@
+.notif-container {
+  width: 100%;
+}
+
+.notif-item {
+  padding: 16px;
+}
+.notif-item > .status {
+  font-size: ms(1);
+}

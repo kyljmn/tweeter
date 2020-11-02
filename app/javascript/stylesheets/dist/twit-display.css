@@ -1,0 +1,9 @@
+.twit-container {
+  display: flex;
+  flex-flow: column wrap;
+  padding: 16px;
+}
+.twit-container .user {
+  display: flex;
+  flex-flow: row;
+}

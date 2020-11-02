@@ -1,3 +1,4 @@
-<h1><%= action %></h1>
-<%= link_to @user.username, user_path(@user.id) %>
-<%= render partial:"follow/table", locals: { pager: @pager }%>
+<div class="header"><%= link_to "@" + @user.username + "'s", user_path(@user.id), class: "username" %><%= action %></div>
+<div class="page">
+  <%= render partial:"follow/table", locals: { pager: @pager }%>
+</div>

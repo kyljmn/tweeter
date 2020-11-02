@@ -1,0 +1,24 @@
+.notif-container {
+  width: 100%;
+}
+
+.notif-item {
+  padding: 16px;
+  border-bottom: 1px solid $t-border;
+
+  >.link:hover {
+    text-decoration: underline;
+  }
+
+  > .status {
+    font-size: ms(1);
+    color: black;
+    >.unread {
+      color: $t-blue;
+    }
+
+    >.read {
+      color: $t-dark;
+    }
+  }
+}

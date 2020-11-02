@@ -1,5 +1,4 @@
-<h1> New Tweet </h1>
-<%= form_with model: @twit, url: user_twits_path(current_user.id), local: true do |form| %>
+<%= form_with model: @twit, url: user_twits_path(current_user.id), local: true, class: "twit-form" do |form| %>
     <% if @twit.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -13,12 +12,9 @@
       </ul>
     </div>
   <% end %>
-  <p>
-    <%= form.text_area :body %>
-  </p>
+  <div class="field">
+    <%= form.text_area :body, class: "input", placeholder: "What's happening?" %>
+  </div>
 
-  <p>
-    <%= submit_tag("Twit") %>
-  </p>
- 
+  <%= submit_tag "Twit", class: "button" %> 
 <% end %>

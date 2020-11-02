@@ -9,12 +9,10 @@ module TwitHelper
   end
 
   def render_action(twit)
-    if twit.user.id == current_user.id
-      link_to "x", user_twit_path(twit.user.id, twit), method: :delete
-    elsif !twit.retwits.exists?(retwiter: current_user)
-      link_to "Retwit", retwit_twit_path(twit), method: :post
+    if !twit.retwits.exists?(retwiter: current_user)
+      link_to "Retwit", retwit_twit_path(twit), method: :post, class: "button" 
     else
-      link_to "Unretwit", unretwit_twit_path(twit), method: :delete
+      link_to "Unretwit", unretwit_twit_path(twit), method: :delete, class: "button"
     end
   end
 
@@ -22,7 +20,7 @@ module TwitHelper
     return twit.body unless twit.mentions.any?
     processed_body = twit.body.to_s
     twit.mentions.each do |mention|
-      processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}'>@#{mention.user.username}</a>")
+      processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}' class='mention' >@#{mention.user.username}</a>")
     end
     return processed_body.html_safe
   end

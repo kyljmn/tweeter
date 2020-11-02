@@ -1,0 +1,5 @@
+.twit-form {
+  width: 90%;
+  display: flex;
+  flex-flow: column wrap;
+}

@@ -1,0 +1,19 @@
+.nav-bar {
+  padding: 16px;
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: ms(3);
+  width: 20%;
+  height: 100%;
+}
+.nav-bar > .item {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: 8px;
+  border-radius: 10px;
+  padding: 8px;
+}
+.nav-bar > .item:hover {
+  background-color: blue;
+}

@@ -1,6 +1,6 @@
 <tr>
   <td><%= link_to twit.user.username, user_path(twit.user) %></td>  
-  <td><%= twit.body %></td>
+  <td><%= render_body(twit) %></td>
   <td>
     <%= render_action(twit) %>
   </td>

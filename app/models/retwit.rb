@@ -11,8 +11,8 @@ class Retwit < ApplicationRecord
     Post.create(user: self.retwiter, postable: self)
   end
 
-  around_destroy do
-    @post = Post.where(user: self.retwiter, postable: self).first
-    @post.destroy
+  before_destroy do
+    post = Post.where(user: self.retwiter, postable: self).first
+    post.destroy
   end
 end

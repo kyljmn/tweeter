@@ -17,8 +17,8 @@ module TwitHelper
   end
 
   def render_body(twit)
-    return twit.original.body unless twit.original.mentions.any?
-    processed_body = twit.original.body.to_s
+    return twit.body unless twit.original.mentions.any?
+    processed_body = twit.body.to_s
     twit.original.mentions.each do |mention|
       processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}' class='mention' >@#{mention.user.username}</a>")
     end

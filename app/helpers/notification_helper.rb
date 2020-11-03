@@ -8,7 +8,7 @@ module NotificationHelper
       return notif.notifiable.twit.user
     end
   end
-#comment
+
   def notif_message(notif)
     if notif.notifiable_type == 'Mention'
       return notifying_user(notif).username + " mentioned you"

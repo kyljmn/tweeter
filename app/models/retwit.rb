@@ -1,9 +1,9 @@
 class Retwit < ApplicationRecord
-  belongs_to :twit, foreign_key: :twit_id, class_name: 'Twit' 
+  belongs_to :twit, foreign_key: :twit_id, class_name: "Twit"
 
-  belongs_to :retwiter, foreign_key: :retwiter_id, class_name: 'User'
+  belongs_to :retwiter, foreign_key: :retwiter_id, class_name: "User"
 
-  has_one :post, foreign_key: :postable_id, class_name: 'Post', dependent: :destroy
+  has_one :post, foreign_key: :postable_id, class_name: "Post", dependent: :destroy
   
   validates :twit, uniqueness: { scope: :retwiter }
 

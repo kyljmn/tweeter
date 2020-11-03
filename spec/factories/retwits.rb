@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :retweet do
-    tweet { nil }
-    retweeter { nil }
+  factory :retwit do
+    twit { nil }
+    retwiter { nil }
   end
 end

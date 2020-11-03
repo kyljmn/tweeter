@@ -1,4 +1,5 @@
 class NotificationController < ApplicationController
+  before_action :authenticate_user!
   def index
     @pager = PagesService.new('notification', current_user, params.fetch(:page, 1).to_i)
   end

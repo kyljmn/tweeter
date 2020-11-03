@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @users = User.all
     @pager = PagesService.new('user_index', @users, params.fetch(:page, 1).to_i)

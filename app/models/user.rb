@@ -9,11 +9,9 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: "Follow"
   has_many :followings, through: :following_relationships, dependent: :destroy
 
-  has_many :retwits, foreign_key: :retwiter_id, class_name: "Retwit", dependent: :destroy
+  has_many :retwits, foreign_key: :owner_id, class_name: "Twit"
 
   has_many :mentions, dependent: :destroy
-
-  has_many :posts, foreign_key: :user_id, class_name: "Post", dependent: :destroy
   
   has_many :notifications, foreign_key: :user_id, class_name: "Notification", dependent: :destroy
   # Include default devise modules. Others available are:
@@ -31,4 +29,11 @@ class User < ApplicationRecord
   
   validates :password, presence: true
   
+  def full_name
+    return self.first_name + " " + self.last_name
+  end
+
+  def tweeter_handle
+    return "@" + self.username
+  end
 end

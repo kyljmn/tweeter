@@ -1,6 +1,5 @@
 <div class="twit-container">
-  <% pager.get_items.map do |post| %>
-    <%= render_twit(post.postable) %>
+  <% pager.get_items.map do |twit| %>
+    <%= render_twit(twit) %>
   <% end %>
-</table>
  <%= render partial:'pagination/pages', locals: { pager: pager} %>

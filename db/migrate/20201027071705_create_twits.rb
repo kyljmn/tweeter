@@ -3,6 +3,8 @@ class CreateTwits < ActiveRecord::Migration[6.0]
     create_table :twits do |t|
       t.string :body
       t.references :user, null: false, foreign_key: true
+      t.integer :retwit_id
+      t.integer :owner_id
 
       t.timestamps
     end

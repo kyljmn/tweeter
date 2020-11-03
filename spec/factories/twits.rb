@@ -1,6 +1,8 @@
+require 'faker'
+
 FactoryBot.define do
   factory :twit do
-    body { "MyString" }
-    user { nil }
+    body { Faker::String.random(length: 250) }
+    user { FactoryBot.create :user }
   end
 end

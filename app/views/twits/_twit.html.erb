@@ -1,14 +1,14 @@
   <div class="twit">
-    <% if defined? retwit %>
-      <div class="retweet">retweeted by <%= link_to retwit.retwiter.username, user_path(retwit.retwiter) %></div>
+    <% if twit.is_retwit? %>
+      <div class="retweet">retweeted by <%= link_to twit.user.username, user_path(twit.user) %></div>
     <% end %>
     <div class="info">
-      <%= link_to user_path(twit.user), class: "user" do %>
-        <span class="name"><%= twit.user.first_name + " " + twit.user.last_name%></span>
-        <span class="username"><%= "@" + twit.user.username %></span>
+      <%= link_to user_path(author), class: "user" do %>
+        <span class="name"><%= author.full_name %></span>
+        <span class="username"><%= author.tweeter_handle %></span>
       <% end %>
-      <% if twit.user.id == current_user.id %>
-        <%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete, class: "delete" %>
+      <% if author.id == current_user.id %>
+        <%= link_to "x", user_twit_path(author.id, twit), method: :delete, class: "delete" %>
       <% end %>
     </div>
     <div class="body"><%= render_body(twit) %></div>

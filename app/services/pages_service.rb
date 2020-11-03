@@ -9,7 +9,7 @@ class PagesService
   
   def get_items
     if @type == 'post'
-      return Post.where(user: @people).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
+      return Twit.where(user: @people).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'following'
       return @people.followings.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'followers'
@@ -23,7 +23,7 @@ class PagesService
   
   def count_pages
     if @type == 'post'
-      return count(Post.where(user: @people).size)
+      return count(Twit.where(user: @people).size)
     elsif @type == 'following'
       return count(@people.followings.size)
     elsif @type == 'followers'

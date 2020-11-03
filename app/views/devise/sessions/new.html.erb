@@ -3,7 +3,7 @@
   <div class="auth-container">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
-        <%= f.label :emai, class: "label" %><br />
+        <%= f.label :email, class: "label" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
       </div>
 

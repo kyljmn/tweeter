@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Twit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "when validating a twit" do
+    let(:valid_twit) { FactoryBot.create :twit }
+  end
 end

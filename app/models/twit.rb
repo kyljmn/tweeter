@@ -1,15 +1,22 @@
 class Twit < ApplicationRecord
   belongs_to :user
+  
+  belongs_to :owner, foreign_key: :owner_id, class_name: "User", optional: true
 
-  has_many :retwits, foreign_key: :twit_id, class_name: "Retwit", dependent: :destroy
+  belongs_to :twit, foreign_key: :retwit_id, class_name: "Twit", optional: true
+
+  has_many :retwits, foreign_key: :retwit_id, class_name: "Twit", dependent: :destroy
 
   has_many :mentions, dependent: :destroy
-  
-  has_one :post, foreign_key: :postable_id, class_name: "Post", dependent: :destroy
 
   validates :body, presence: true, length: { maximum: 280 }
 
-  after_create do
-    Post.create(user: self.user, postable: self)
+  def is_retwit?
+    return !self.twit.nil?
+  end
+
+  def original
+    return self unless self.is_retwit?
+    return self.twit
   end
 end

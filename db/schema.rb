@@ -41,25 +41,11 @@ ActiveRecord::Schema.define(version: 2020_10_30_105536) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer "postable_id"
-    t.string "postable_type"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "retwits", force: :cascade do |t|
-    t.integer "twit_id"
-    t.integer "retwiter_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["twit_id", "retwiter_id"], name: "index_retwits_on_twit_id_and_retwiter_id", unique: true
-  end
-
   create_table "twits", force: :cascade do |t|
     t.string "body"
     t.bigint "user_id", null: false
+    t.integer "retwit_id"
+    t.integer "owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_twits_on_user_id"

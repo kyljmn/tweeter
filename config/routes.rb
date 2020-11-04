@@ -24,5 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :hashtag, only: [:show]
+
   root 'home#index'
 end

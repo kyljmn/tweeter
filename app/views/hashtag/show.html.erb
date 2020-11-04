@@ -1,0 +1,4 @@
+<div class="header"><%= "#" + @hashtag.name + " twits" %></div>
+<div class="page">
+  <%= render partial:"twits/table", locals: { pager: @pager} %>
+</div>

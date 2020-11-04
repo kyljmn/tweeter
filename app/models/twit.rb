@@ -9,7 +9,13 @@ class Twit < ApplicationRecord
 
   has_many :mentions, dependent: :destroy
 
+  has_many :twit_hashtags, dependent: :destroy
+
+  has_many :hashtags, through: :twit_hashtags 
+
   validates :body, presence: true, length: { maximum: 280 }
+
+  validates :twit, uniqueness: { scope: :user }, if: :is_retwit?
 
   def is_retwit?
     return !self.twit.nil?

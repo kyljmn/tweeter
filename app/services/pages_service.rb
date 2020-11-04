@@ -19,7 +19,7 @@ class PagesService
     elsif @type == 'notification'
       return Notification.where(user: @query).order(is_read: :asc).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     elsif @type == 'hashtag_index'
-      return @query.twits.offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
+      return @query.twits.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     end
   end
   

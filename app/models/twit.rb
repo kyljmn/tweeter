@@ -11,6 +11,8 @@ class Twit < ApplicationRecord
 
   validates :body, presence: true, length: { maximum: 280 }
 
+  validates :twit, uniqueness: { scope: :user }, if: :is_retwit?
+
   def is_retwit?
     return !self.twit.nil?
   end

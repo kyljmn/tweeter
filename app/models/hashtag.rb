@@ -3,5 +3,5 @@ class Hashtag < ApplicationRecord
 
   has_many :twits, through: :twit_hashtags
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end

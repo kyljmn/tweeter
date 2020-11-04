@@ -12,7 +12,8 @@ class TwitsController < ApplicationController
     if @twit.save
       # extract usernames from twit body
       # done after @twit.save so @twit has an id
-      mention_creator
+      MentionsService.mention_creator(@twit)
+      HashtagsService.hashtag_creator(@twit)
       redirect_to user_path(@user)
     else
       redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
@@ -48,15 +49,5 @@ class TwitsController < ApplicationController
 
     def twit_params
       params.require(:twit).permit(:body)
-    end
-
-    def mention_creator
-      mentioned_usernames = twit_params["body"].scan(/@(\w+)/).flatten.uniq
-      if !mentioned_usernames.empty?
-        mentioned_usernames.each do |username|
-          mentioned_user = User.find_by(username: username)
-          @mention = Mention.create(user: mentioned_user, twit: @twit)
-        end
-      end
     end
 end

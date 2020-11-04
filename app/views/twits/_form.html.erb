@@ -15,6 +15,8 @@
   <div class="field">
     <%= form.text_area :body, class: "input", placeholder: "What's happening?" %>
   </div>
+  
+  <%= form.file_field :images, multiple: true %>
 
   <%= submit_tag "Twit", class: "button" %> 
 <% end %>

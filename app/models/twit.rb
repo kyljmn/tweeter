@@ -13,10 +13,13 @@ class Twit < ApplicationRecord
 
   has_many :hashtags, through: :twit_hashtags 
 
-  validates :body, presence: true, length: { maximum: 280 }
-
   validates :twit, uniqueness: { scope: :user }, if: :is_retwit?
 
+  has_many_attached :images, dependent: :destroy
+
+  validates :body, presence: true, length: { maximum: 280 }
+
+  validate :image_type
   def is_retwit?
     return !self.twit.nil?
   end
@@ -24,5 +27,22 @@ class Twit < ApplicationRecord
   def original
     return self unless self.is_retwit?
     return self.twit
+  end
+
+  def image_type
+    images.each do |image|
+      if !image.content_type.in?(%('image/jpeg image/png'))
+        errors.add(:images, 'needs to be a jpeg or png')
+      end
+      if image.byte_size > 5.megabytes
+        errors[:images] << "each image should be less than 5MB" 
+      end
+    end
+    if images.map(&:byte_size).sum > 20.megabytes
+      errors[:images] << "Files data is too large" 
+    end
+    if images.count > 4
+      errors[:images] << "Maximum of 4 images can be uploaded" 
+    end
   end
 end

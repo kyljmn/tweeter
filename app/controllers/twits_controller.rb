@@ -48,6 +48,6 @@ class TwitsController < ApplicationController
     end
 
     def twit_params
-      params.require(:twit).permit(:body)
+      params.require(:twit).permit(:body, images: [])
     end
 end

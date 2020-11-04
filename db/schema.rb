@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_105536) do
+ActiveRecord::Schema.define(version: 2020_11_04_031124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 2020_10_30_105536) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["follower_id", "following_id"], name: "index_follows_on_follower_id_and_following_id", unique: true
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "mentions", force: :cascade do |t|
@@ -39,6 +45,15 @@ ActiveRecord::Schema.define(version: 2020_10_30_105536) do
     t.boolean "is_read", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "twit_hashtags", force: :cascade do |t|
+    t.bigint "twit_id", null: false
+    t.bigint "hashtag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id"], name: "index_twit_hashtags_on_hashtag_id"
+    t.index ["twit_id"], name: "index_twit_hashtags_on_twit_id"
   end
 
   create_table "twits", force: :cascade do |t|
@@ -69,5 +84,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_105536) do
 
   add_foreign_key "mentions", "twits"
   add_foreign_key "mentions", "users"
+  add_foreign_key "twit_hashtags", "hashtags"
+  add_foreign_key "twit_hashtags", "twits"
   add_foreign_key "twits", "users"
 end

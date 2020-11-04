@@ -12,6 +12,7 @@
       <% end %>
     </div>
     <div class="body"><%= render_body(twit) %></div>
+    <%= fetch_images(twit)%>
     <div class="action">
       <%= link_to "Show", user_twit_path(twit.user.id, twit), class: "button" %>      
       <%= render_action(twit) %>

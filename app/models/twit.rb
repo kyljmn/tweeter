@@ -38,9 +38,6 @@ class Twit < ApplicationRecord
         errors[:images] << "each image should be less than 5MB" 
       end
     end
-    if images.map(&:byte_size).sum > 20.megabytes
-      errors[:images] << "Files data is too large" 
-    end
     if images.count > 4
       errors[:images] << "Maximum of 4 images can be uploaded" 
     end

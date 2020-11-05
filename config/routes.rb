@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     member do
       post 'retwit'
       delete 'unretwit'
+      get 'new_reply'
+      post 'create_reply'
     end
   end
 

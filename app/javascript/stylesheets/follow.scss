@@ -43,6 +43,9 @@
   overflow: ellipsis;
 
   >a {
+    display: flex;
+    align-items: center;
+
     >.profilepic {
       width: 24px;
       height: 24px;

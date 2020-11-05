@@ -13,17 +13,6 @@ class UserController < ApplicationController
     @pager = PagesService.new('post', @user, params.fetch(:page, 1).to_i)
   end
 
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to user_path(@user)
-    else
-      redirect_to edit_user_path(@user)
-    end
-  end
-
   private
     def user_from_params
       @user = User.find(params[:id])

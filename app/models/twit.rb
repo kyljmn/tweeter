@@ -5,6 +5,8 @@ class Twit < ApplicationRecord
 
   belongs_to :twit, foreign_key: :retwit_id, class_name: "Twit", optional: true
 
+  belongs_to :reply_to, foreign_key: :reply_to_id, class_name: "Twit", optional: true
+
   has_many :retwits, foreign_key: :retwit_id, class_name: "Twit", dependent: :destroy
 
   has_many :mentions, dependent: :destroy
@@ -13,6 +15,8 @@ class Twit < ApplicationRecord
 
   has_many :hashtags, through: :twit_hashtags 
 
+  has_many :replies, foreign_key: :reply_to_id, class_name: "Twit", dependent: :destroy;
+  
   validates :twit, uniqueness: { scope: :user }, if: :is_retwit?
 
   has_many_attached :images, dependent: :destroy
@@ -20,8 +24,13 @@ class Twit < ApplicationRecord
   validates :body, presence: true, length: { maximum: 280 }
 
   validate :image_type
+
   def is_retwit?
     return !self.twit.nil?
+  end
+
+  def is_reply?
+    return !self.reply_to.nil?
   end
 
   def original

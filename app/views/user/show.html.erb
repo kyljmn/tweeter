@@ -3,6 +3,7 @@
   <div class="profile-container">
     <div class="top">
       <div class="info">
+        <%= render partial:"user/profile_pic", locals: {user: @user} %>
         <div class="name"><%= @user.first_name + " " + @user.last_name %></div>
         <div class="username"><%= "@" + @user.username %></div>
       </div>

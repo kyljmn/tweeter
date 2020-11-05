@@ -1,25 +1,7 @@
 <div class="header">Show Tweet</div>
 <div class="page">
-    <div class="twit">
-    <% if defined? retwit %>
-      <div class="retweet">retweeted by <%= link_to retwit.retwiter.username, user_path(retwit.retwiter) %></div>
-    <% end %>
-    <div class="info">
-      <%= link_to user_path(twit.user), class: "user" do %>
-        <span class="name"><%= twit.user.first_name + " " + twit.user.last_name%></span>
-        <span class="username"><%= "@" + twit.user.username %></span>
-      <% end %>
-      <% if twit.user.id == current_user.id %>
-        <%= link_to "x", user_twit_path(twit.user.id, twit), method: :delete, class: "delete" %>
-      <% end %>
-    </div>
-    <div class="body"><%= render_body(twit) %></div>
-    <div>
-      <%= fetch_images(twit)%>
-    </div>
-    <div class="action">
-      <%= link_to "Show", user_twit_path(twit.user.id, twit), class: "button" %>      
-      <%= render_action(twit) %>
-    </div>
-  </div>    
+   <%= render partial:"twits/twit_reply_to", locals: { twit: @twit } %>
+   <% if @twit.replies.exists? %>
+      <%= render partial:"twits/replies", locals: { twit: @twit } %>
+   <% end %>
 </div>

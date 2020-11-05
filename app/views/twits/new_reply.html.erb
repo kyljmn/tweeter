@@ -1,0 +1,7 @@
+<div class="header">Reply</div>
+<div class="page">
+  <%= render partial: "twits/twit_reply_to", locals: { twit: @reply_to } %>
+  <div class="reply" id="reply">
+    <%= render partial: "twits/form", locals: { url: create_reply_twit_path(@reply_to) }%>
+  </div>
+</div>

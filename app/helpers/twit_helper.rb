@@ -3,7 +3,7 @@ module TwitHelper
     render partial:"twits/twit", locals: { twit: twit, author: twit_author(twit) }
   end
 
-  def render_action(twit)
+  def render_retwit_action(twit)
     if !twit.original.retwits.exists?(user: current_user)
       link_to "Retwit", retwit_twit_path(twit.original), method: :post, class: "button" 
     else

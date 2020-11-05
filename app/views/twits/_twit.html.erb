@@ -1,4 +1,4 @@
-  <div class="twit">
+  <div class="twit" id=<%= twit.id.to_s %>>
     <% if twit.is_retwit? %>
       <div class="retweet">retweeted by <%= link_to twit.user.username, user_path(twit.user) %></div>
     <% end %>
@@ -14,7 +14,8 @@
     <div class="body"><%= render_body(twit) %></div>
     <%= fetch_images(twit)%>
     <div class="action">
-      <%= link_to "Show", user_twit_path(twit.user.id, twit), class: "button" %>      
-      <%= render_action(twit) %>
+      <%= link_to "Show", user_twit_path(twit.user.id, twit, anchor: twit.id.to_s ), class: "button" %>      
+      <%= link_to "Reply", new_reply_twit_path(twit, anchor: "reply"), class: 'button' %>
+      <%= render_retwit_action(twit) %>
     </div>
-  </div>    
+  </div>

@@ -2,9 +2,9 @@ class TwitsController < ApplicationController
   before_action :authenticate_user!
   before_action :user_from_params, only: %i[ index show create destroy ]
   before_action :twit_from_params, only: %i[ show destroy retwit unretwit ]
+  before_action :reply_to_from_params, only: %i[ new_reply create_reply ]
 
   def show
-    render "twits/show", locals: { twit: @twit }
   end
 
   def create
@@ -12,8 +12,7 @@ class TwitsController < ApplicationController
     if @twit.save
       # extract usernames from twit body
       # done after @twit.save so @twit has an id
-      MentionsService.mention_creator(@twit)
-      HashtagsService.hashtag_creator(@twit)
+      make_mention_hashtag(@twit)
       redirect_to user_path(@user)
     else
       redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
@@ -38,6 +37,16 @@ class TwitsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def new_reply
+    @twit = Twit.new()
+  end
+
+  def create_reply
+    @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user)
+    make_mention_hashtag(@twit)
+    redirect_to user_twit_path(current_user, @twit, anchor: @twit.id.to_s )
+  end
+
   private
     def user_from_params
       @user = User.find(params[:user_id])
@@ -49,5 +58,14 @@ class TwitsController < ApplicationController
 
     def twit_params
       params.require(:twit).permit(:body, images: [])
+    end
+
+    def reply_to_from_params
+      @reply_to = Twit.find(params[:id])
+    end
+
+    def make_mention_hashtag(twit)
+      MentionsService.mention_creator(twit)
+      HashtagsService.hashtag_creator(twit)
     end
 end

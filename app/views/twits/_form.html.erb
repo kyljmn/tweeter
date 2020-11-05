@@ -1,4 +1,4 @@
-<%= form_with model: @twit, url: user_twits_path(current_user.id), local: true, class: "twit-form" do |form| %>
+<%= form_with model: @twit, url: url, local: true, class: "twit-form" do |form| %>
     <% if @twit.errors.any? %>
     <div class="field">
       <h2>

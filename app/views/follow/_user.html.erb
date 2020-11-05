@@ -1,6 +1,7 @@
 <div class="user">
   <div class="identity">
     <%= link_to user_path(user) do %>
+      <%= render partial:"user/profile_pic", locals: {user: @user} %>
       <span class="name"><%= user.first_name + " " + user.last_name %></span>
       <span class="username"><%= "@" + user.username %></span>
     <% end %>

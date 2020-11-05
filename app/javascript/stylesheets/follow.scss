@@ -43,14 +43,19 @@
   overflow: ellipsis;
 
   >a {
+    >.profilepic {
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+    }
 
-   >.name {
-    color: black;
-    margin-right: 4px;
-   }
+    >.name {
+     color: black;
+     margin-right: 4px;
+    }
 
-   >.username {
-    color: $t-dark;
-   }
-  }
+    >.username {
+     color: $t-dark;
+    }
+  } 
 }

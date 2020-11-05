@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :user, only: %i[index show] do
+  resources :user, only: %i[index show edit update] do
     resources :twits, only: %i[create show destroy]
     member do
       get 'follower_index', controller: 'follow'

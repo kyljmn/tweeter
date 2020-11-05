@@ -63,6 +63,11 @@
   display: inline-flex;
   flex-flow: row;
 
+  > .profilepic {
+    width: 24px;
+    height: 24px;
+  }
+
   > .name {
     font-weight: bold;
     margin-right: 4px;

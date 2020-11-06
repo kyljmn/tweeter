@@ -1,16 +1,10 @@
-<div class="nav-bar">
-  <div class="sticky-nav">
-    <%= link_to 'Tweeter', root_path, class: "logo" %>
-    <%= link_to 'Home', root_path, class: "item" %>
-    <% if user_signed_in? %>
-      <%= link_to "@" + current_user.username, user_path(current_user), class: "item" %>
-      <%= link_to "Notifications", notification_index_path, class: "item" %>
-      <%= link_to "Users", user_index_path, class: "item" %>
-      <%= link_to "Account Settings", edit_user_registration_path, class: "item" %>
-      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "item" %>
-    <% else %>
-      <%= link_to 'Sign In', new_user_session_path, class: "item" %>
-      <%= link_to 'Register', new_user_registration_path, class: "item" %>
-    <% end %>
-  </div>
-</div>
+<%= react_component("nav/index", { 
+  home: root_path,
+  notifications: notification_index_path,
+  users: user_index_path,
+  profile: user_path(current_user),
+  signout: destroy_user_session_path,
+  signin: new_user_session_path,
+  register: new_user_registration_path,
+  currentUser: current_user
+}) %>

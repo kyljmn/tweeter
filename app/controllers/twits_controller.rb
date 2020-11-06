@@ -13,7 +13,7 @@ class TwitsController < ApplicationController
       # extract usernames from twit body
       # done after @twit.save so @twit has an id
       make_mention_hashtag(@twit)
-      redirect_to user_path(@user)
+      redirect_to root_path
     else
       redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
     end
@@ -22,19 +22,19 @@ class TwitsController < ApplicationController
   def destroy
     @twit = Twit.find(params[:id])
     @twit.destroy
-    redirect_to user_path(@user)
+    redirect_to root_path
   end
 
   def retwit
     @retwit = Twit.create(body: @twit.body, user: current_user, retwit_id: @twit.id, owner_id: @twit.user.id)
     @retwit.save
-    redirect_to user_path(current_user)
+    redirect_to root_path
   end
 
   def unretwit
     @retwit = Twit.find_by(twit: @twit, user: current_user)
     @retwit.destroy
-    redirect_to user_path(current_user)
+    redirect_to root_path
   end
 
   def new_reply

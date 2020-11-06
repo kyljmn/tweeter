@@ -13,7 +13,7 @@ class FollowController < ApplicationController
   end
 
   def follow
-    @follow = Follow.create({:follower => current_user, :following => @user})
+    @follow = Follow.create({ follower: current_user, following: @user })
     redirect_to root_path
   end
 

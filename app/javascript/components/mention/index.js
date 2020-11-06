@@ -43,8 +43,12 @@ const MentionComponent = ({ users }) => {
   )
 }
 
+<<<<<<< HEAD
 MentionComponent.propTypes = {
   Users: PropTypes.object,
 }
 
 export default MentionComponent
+=======
+export default Mention
+>>>>>>> c21eb35d203be3a388574520b5651fb759edf589

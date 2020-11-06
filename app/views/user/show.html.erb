@@ -22,7 +22,7 @@
       <%= link_to @user.followings.size.to_s, following_index_user_path(@user), class: "font-bold hover:underline" %> following </p>
     </div>
   
-    <% if @pager.get_items.any? %>
+    <% if @pager.fetch_items.any? %>
       <%= render partial:'twits/table', locals: { pager: @pager }%>
     <% end %>
   </div>

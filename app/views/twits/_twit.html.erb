@@ -1,5 +1,5 @@
 <div class="p-5 w-full" id=<%= twit.id.to_s %>>
-  <% if twit.is_retwit? %>
+  <% if twit.retwit? %>
     <div class="text-twitterGray text-sm p-1"><i class="fas fa-retweet"></i><%= link_to twit.user.username, user_path(twit.user) %> Retweeted</div>
   <% end %>
 

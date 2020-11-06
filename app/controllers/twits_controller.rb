@@ -1,11 +1,10 @@
 class TwitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_from_params, only: %i[ index show create destroy ]
-  before_action :twit_from_params, only: %i[ show destroy retwit unretwit ]
-  before_action :reply_to_from_params, only: %i[ new_reply create_reply ]
+  before_action :user_from_params, only: %i[index show create destroy]
+  before_action :twit_from_params, only: %i[show destroy retwit unretwit]
+  before_action :reply_to_from_params, only: %i[new_reply create_reply]
 
-  def show
-  end
+  def show; end
 
   def create
     @twit = @user.twits.new(twit_params)
@@ -38,16 +37,17 @@ class TwitsController < ApplicationController
   end
 
   def new_reply
-    @twit = Twit.new()
+    @twit = Twit.new
   end
 
   def create_reply
     @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user)
     make_mention_hashtag(@twit)
-    redirect_to user_twit_path(current_user, @twit, anchor: @twit.id.to_s )
+    redirect_to user_twit_path(current_user, @twit, anchor: @twit.id.to_s)
   end
 
   private
+
     def user_from_params
       @user = User.find(params[:user_id])
     end

@@ -1,5 +1,5 @@
 <div class="follows-container">
-  <% pager.get_items.map do |user| %>
+  <% pager.fetch_items.map do |user| %>
     <%= render partial: "follow/user", locals: { user: user } %>
   <% end %>
 </div>

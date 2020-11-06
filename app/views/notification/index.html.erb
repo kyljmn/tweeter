@@ -1,8 +1,8 @@
 <div class="header">Notifications</div>
 <div class="page">
-<% if @pager.get_items.any? %>
+<% if @pager.fetch_items.any? %>
   <div class="notifs-container">
-    <% @pager.get_items.map do |notif| %>
+    <% @pager.fetch_items.map do |notif| %>
       <%= render partial: "notification/notif", locals: {notif: notif} %>
     <% end %>
   </div>

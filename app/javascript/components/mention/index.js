@@ -1,24 +1,50 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { MentionsInput, Mention } from 'react-mentions'
 
-const Mention = () => {
+const MentionComponent = ({ users }) => {
   const [input, setInput] = useState()
+  const [usersArray, setUsersArray] = useState([
+    {
+      id: '',
+      display: '',
+    },
+  ])
 
-  const handleChange = (event) => {
+  const handleChangeInput = (event) => {
     setInput(event.target.value)
   }
 
-  const users = ['one', 'two', 'three']
+  const createUsersArray = () => {
+    const usersData = users.query.map((value, index) => {
+      return { id: value.id, display: value.username }
+    })
+
+    setUsersArray(usersData)
+  }
+
+  useEffect(() => {
+    createUsersArray()
+  }, [users])
 
   return (
     <div>
-      body here
-      <MentionsInput value={input} onChange={handleChange}>
-        <Mention trigger="@" data={users} />
+      <MentionsInput
+        value={input}
+        onChange={handleChangeInput}
+        placeholder="What's happening?"
+        className="w-full flex items-center text-lg border-none py-5 focus:outline-none"
+      >
+        <Mention trigger="@" data={usersArray} markup="@__display__" />
       </MentionsInput>
+
+      <input name="twit[body]" value={input} hidden />
     </div>
   )
 }
 
-export default Mention
+MentionComponent.propTypes = {
+  Users: PropTypes.object,
+}
+
+export default MentionComponent

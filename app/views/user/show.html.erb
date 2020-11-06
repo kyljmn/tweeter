@@ -1,23 +1,29 @@
-<div class="header"><%= "@" + @user.username + "'s profile" %></div>
-<div class="page">
-  <div class="profile-container">
-    <div class="top">
-      <div class="info">
-        <%= render partial:"user/profile_pic", locals: {user: @user} %>
-        <div class="name"><%= @user.first_name + " " + @user.last_name %></div>
-        <div class="username"><%= "@" + @user.username %></div>
-      </div>
-      <%= render partial:"follow/button", locals: {user: @user} %>
-    </div>
-    <div class="follows">
-      <%= link_to @user.followers.size.to_s + " followers", follower_index_user_path(@user), class: "links" %>
-      <%= link_to @user.followings.size.to_s + " following", following_index_user_path(@user), class: "links" %>
-    </div>
+<div class="flex flex-col stretch">
+  <div class="flex flex-col w-full p-5">
+    <p class="font-bold text-lg"><%= @user.first_name + " " + @user.last_name %></p>
+    <p class="text-sm text-twitterGray">29 tweets</p>
   </div>
-  <% if @user.id == current_user.id %>
-    <%= render partial:'twits/form', locals: { url: user_twits_path(current_user.id) } %>
-  <% end %>
-  <% if @pager.get_items.any? %>
-    <%= render partial:'twits/table', locals: { pager: @pager }%>
-  <% end %>
+  <div class="flex flex-col relative">
+    <div class="absolute bg-twitterLightGray w-full h-48"></div>
+    <div class="flex flex-col mt-32 px-5 z-10">
+      <i class="fas fa-user-circle fa-6x rounded-full border-4 border-white"></i>
+    </div>
+    <div class="flex w-full justify-between px-5">
+      <div>
+        <p class="font-bold text-lg"><%= @user.first_name + " " + @user.last_name %></p>
+        <p class="text-twitterGray"><%= "@" + @user.username %></p>
+      </div>
+      <div class="z-10"> 
+        <%= render partial:"follow/button", locals: {user: @user} %>
+      </div>
+    </div>  
+    <div class="flex p-5">
+      <p><%= link_to @user.followers.size.to_s, follower_index_user_path(@user), class: "font-bold hover:underline" %> followers |
+      <%= link_to @user.followings.size.to_s, following_index_user_path(@user), class: "font-bold hover:underline" %> following </p>
+    </div>
+  
+    <% if @pager.get_items.any? %>
+      <%= render partial:'twits/table', locals: { pager: @pager }%>
+    <% end %>
+  </div>
 </div>

@@ -5,22 +5,18 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js" integrity="sha256-2JRzNxMJiS0aHOJjG+liqsEOuBb6++9cY4dSOyiijX4=" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="content-container">
-      <% if user_signed_in? %>
-        <div class="user-list">
-          <%= render "user/list" %>
-        </div>
-      <% end %>
+  <body>    
+    <% if user_signed_in? %>
       <%= render "shared/nav" %>
-      <div class="content">
-        <%= yield %>
-      </div>
-    </div>
+      <%= yield %>
+      <%= render "user/list" %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

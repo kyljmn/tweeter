@@ -5,7 +5,9 @@ module TwitHelper
 
   def render_retwit_action(twit)
     if !twit.original.retwits.exists?(user: current_user)
-      link_to "Retwit", retwit_twit_path(twit.original), method: :post, class: "button" 
+      link_to retwit_twit_path(twit.original), method: :post do
+        content_tag :i, "", class: "fas fa-retweet "
+      end
     else
       link_to "Unretwit", unretwit_twit_path(twit.original), method: :delete, class: "button"
     end

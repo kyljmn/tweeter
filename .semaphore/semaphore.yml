@@ -22,7 +22,7 @@ blocks:
           	- cache restore
           	# Set Ruby version:
           	- sem-version ruby 2.6.0
-          	- bundle install --deployment -j 4 --path vendor/bundle
+          	- bundle install
           	# Store the latest version of dependencies in cache,
           	# to be used in next blocks and future workflows:
           	- cache store
@@ -38,7 +38,7 @@ blocks:
             - checkout
             - cache restore
             - sem-version ruby 2.7.2
-            - bundle install --deployment --path vendor/bundle
+            - bundle install
             - bundle exec rubocop
             
   - name: Unit tests
@@ -49,7 +49,7 @@ blocks:
           - cache restore
           - sem-service start postgres
           - sem-version ruby 2.7.2
-          - bundle install --deployment --path vendor/bundle
+          - bundle install
           - bundle exec rake db:setup
       jobs:
         - name: Rspec tests

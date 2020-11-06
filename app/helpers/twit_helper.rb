@@ -22,7 +22,7 @@ module TwitHelper
     return twit.body unless twit.original.mentions.any? || twit.original.hashtags.any?
     processed_body = twit.body.to_s
     twit.original.mentions.each do |mention|
-      processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}' class='mention' >@#{mention.user.username}</a>")
+      processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}' class='text-twitter'>&nbsp;@#{mention.user.username}&nbsp;</a>")
     end
     twit.original.hashtags.each do |hashtag|
       processed_body = processed_body.gsub(/##{hashtag.name}\b/i) do

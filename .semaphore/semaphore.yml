@@ -40,7 +40,8 @@ blocks:
           - sem-service start postgres
           - sem-version ruby 2.7.2
           - bundle install
-          - bundle exec rake db:setup
+          - bundle exec rails db:create
+          - bundle exec rails db:schema:load
       jobs:
         - name: Rspec tests
           commands:

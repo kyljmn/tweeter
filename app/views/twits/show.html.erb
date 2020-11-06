@@ -1,5 +1,7 @@
-<div class="header">Show Tweet</div>
-<div class="page">
+<div class="flex flex-col stretch">
+  <div class="w-full p-5">
+    <p class="font-bold text-lg">Show Tweets</p>
+  </div>
    <%= render partial:"twits/twit_reply_to", locals: { twit: @twit } %>
    <% if @twit.replies.exists? %>
       <%= render partial:"twits/replies", locals: { twit: @twit } %>

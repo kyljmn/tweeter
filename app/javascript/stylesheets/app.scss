@@ -20,3 +20,8 @@ body {
 .stretch {
   width: stretch;
 }
+
+::placeholder {
+  display: flex;
+  align-items: center;
+}

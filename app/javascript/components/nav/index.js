@@ -14,38 +14,41 @@ const Nav = ({ home, notifications, users, profile, signout, signin, register, c
   ]
 
   return (
-    <div className="flex flex-col justify-between h-screen w-full mr-20" style={{ borderRight: '.5px solid #f5f5f5' }}>
-      <div>
-        <div className="py-4">
-          <i className="fab fa-twitter fa-2x" style={{ color: '#1da1f2' }} />
+    <div className="h-screen w-56" style={{ borderRight: '.5px solid #f5f5f5' }}>
+      <div className="flex flex-col justify-between fixed h-screen">
+        <div>
+          <div className="py-4">
+            <i className="fab fa-twitter fa-2x" style={{ color: '#1da1f2' }} />
+          </div>
+          {links &&
+            links.map((value, index) => {
+              return (
+                <div className="pb-5">
+                  <i className={`${value.image} fa-lg mr-5`} />
+                  {/* <img src={value.image} alt={value.menu} /> */}
+                  <a href={value.url} className="font-bold text-lg">
+                    {value.menu}
+                  </a>
+                </div>
+              )
+            })}
         </div>
-        {links &&
-          links.map((value, index) => {
-            return (
-              <div className="pb-5">
-                <i className={`${value.image} fa-lg mr-5`} />
-                {/* <img src={value.image} alt={value.menu} /> */}
-                <a href={value.url} className="font-bold text-lg">
-                  {value.menu}
-                </a>
-              </div>
-            )
-          })}
-      </div>
-      <div className="flex py-5">
-        <div className="mr-4">
-          <i className="fas fa-user-circle fa-2x" />
-        </div>
-        <div className="flex flex-col">
-          <a href={profile} className="font-bold">
-            {currentUser.first_name}
-          </a>
-          <a href={profile} className="text-twitterGray">
-            @{currentUser.first_name}
-          </a>
-          <a href={signout} data-method="delete">
-            Sign Out
-          </a>
+
+        <div className="flex py-5">
+          <div className="mr-4">
+            <i className="fas fa-user-circle fa-2x" />
+          </div>
+          <div className="flex flex-col">
+            <a href={profile} className="font-bold">
+              {currentUser.first_name}
+            </a>
+            <a href={profile} className="text-twitterGray">
+              @{currentUser.first_name}
+            </a>
+            <a href={signout} data-method="delete">
+              Sign Out
+            </a>
+          </div>
         </div>
       </div>
     </div>

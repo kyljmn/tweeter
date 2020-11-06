@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :retwits, foreign_key: :owner_id, class_name: "Twit"
 
   has_many :mentions, dependent: :destroy
-  
+
   has_many :notifications, foreign_key: :user_id, class_name: "Notification", dependent: :destroy
 
   has_one_attached :profile_picture, dependent: :destroy
@@ -23,29 +23,25 @@ class User < ApplicationRecord
 
   validates :username, presence: true, length: { minimum: 2 }, uniqueness: true
 
-  validates :first_name, presence: true, length: { minimum: 2}
+  validates :first_name, presence: true, length: { minimum: 2 }
 
-  validates :last_name, presence: true, length: { minimum: 2}
+  validates :last_name, presence: true, length: { minimum: 2 }
 
   validates :email, presence: true, uniqueness: true
-  
+
   validates :password, presence: true
-  
+
   def full_name
-    return self.first_name + " " + self.last_name
+    "#{first_name} #{last_name}"
   end
 
   def tweeter_handle
-    return "@" + self.username
+    "@#{username}"
   end
 
   def profile_picture_validation
-    if !profile_picture.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:profile_picture, 'needs to be a jpeg or png')
-    end
+    errors.add(:profile_picture, "needs to be a jpeg or png") unless profile_picture.content_type.in?(%('image/jpeg image/png'))
 
-    if profile_picture.byte_size > 5.megabytes
-      errors[:profile_picture] << "each image should be less than 5MB" 
-    end
+    errors[:profile_picture] << "each image should be less than 5MB" if profile_picture.byte_size > 5.megabytes
   end
 end

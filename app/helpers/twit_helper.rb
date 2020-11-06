@@ -1,6 +1,6 @@
 module TwitHelper
   def render_twit(twit)
-    render partial:"twits/twit", locals: { twit: twit, author: twit_author(twit) }
+    render partial: "twits/twit", locals: { twit: twit, author: twit_author(twit) }
   end
 
   def render_retwit_action(twit)
@@ -15,20 +15,22 @@ module TwitHelper
 
   def twit_author(twit)
     return twit.owner unless twit.retwit_id.nil?
-    return twit.user
+
+    twit.user
   end
 
   def render_body(twit)
     return twit.body unless twit.original.mentions.any? || twit.original.hashtags.any?
+
     processed_body = twit.body.to_s
     twit.original.mentions.each do |mention|
       processed_body = processed_body.gsub(/@#{mention.user.username}\b/, "<a href='/user/#{mention.user.id}' class='mention' >@#{mention.user.username}</a>")
     end
     twit.original.hashtags.each do |hashtag|
       processed_body = processed_body.gsub(/##{hashtag.name}\b/i) do
-       ("<a href='/hashtag/#{hashtag.id}' class='mention' >#{Regexp.last_match.to_s}</a>")
+        "<a href='/hashtag/#{hashtag.id}' class='mention' >#{Regexp.last_match}</a>"
+      end
     end
-    end
-    return processed_body.html_safe
+    processed_body.html_safe
   end
 end

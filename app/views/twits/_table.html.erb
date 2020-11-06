@@ -1,5 +1,5 @@
 <div>
-  <% pager.get_items.map do |twit| %>
+  <% pager.fetch_items.map do |twit| %>
     <%= render_twit(twit) %>
   <% end %>
 </div>

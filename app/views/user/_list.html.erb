@@ -2,5 +2,5 @@
   <div class="w-full p-5">
     <p class="font-bold text-lg">Who to follow</p>
   </div>
-  <%= render partial:"follow/table", locals: { pager: get_new_users}%>
+  <%= render partial:"follow/table", locals: { pager: fetch_new_users}%>
 </div>

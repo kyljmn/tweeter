@@ -1,4 +1,4 @@
-require 'faker'
+require "faker"
 
 FactoryBot.define do
   factory :user do
@@ -6,6 +6,6 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     username { Faker::Internet.username }
     email { Faker::Internet.email }
-    password { 'rspecpassword' }
+    password { "rspecpassword" }
   end
 end

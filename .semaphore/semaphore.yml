@@ -6,27 +6,27 @@ agent:
     os_image: ubuntu1804
     
 blocks:
-	  - name: Setup
-    	task:
-      	jobs:
-        	- name: bundle
-          	commands:
-          	# Checkout code from Git repository. This step is mandatory if the
-          	# job is to work with your code.
-          	# Optionally you may use --use-cache flag to avoid roundtrip to
-          	# remote repository.
-          	# See https://docs.semaphoreci.com/reference/toolbox-reference/#checkout
-          	- checkout
-          	# Restore dependencies from cache.
-          	# Read about caching: https://docs.semaphoreci.com/essentials/caching-dependencies-and-directories/
-          	- cache restore
-          	# Set Ruby version:
-          	- sem-version ruby 2.6.0
-          	- bundle install
-          	# Store the latest version of dependencies in cache,
-          	# to be used in next blocks and future workflows:
-          	- cache store
-            
+	- name: Setup
+    task:
+    	jobs:
+      	- name: bundle
+        	commands:
+        	# Checkout code from Git repository. This step is mandatory if the
+        	# job is to work with your code.
+        	# Optionally you may use --use-cache flag to avoid roundtrip to
+        	# remote repository.
+        	# See https://docs.semaphoreci.com/reference/toolbox-reference/#checkout
+        	- checkout
+        	# Restore dependencies from cache.
+        	# Read about caching: https://docs.semaphoreci.com/essentials/caching-dependencies-and-directories/
+        	- cache restore
+        	# Set Ruby version:
+        	- sem-version ruby 2.6.0
+        	- bundle install
+        	# Store the latest version of dependencies in cache,
+        	# to be used in next blocks and future workflows:
+        	- cache store
+          
   - name: Lint
     task:
       prologue:

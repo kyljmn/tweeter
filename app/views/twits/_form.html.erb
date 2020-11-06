@@ -14,7 +14,7 @@
     <% end %>
   <i class="fas fa-user-circle fa-3x m-4" ></i>
   <div className="flex flex-col px-2">
-    <%= react_component("mention/index", {users: get_new_users}, prerender: true) %>
+    <%= react_component("mention/index", {users: fetch_new_users}, {prerender: true}) %>
 
     <div className="flex justify-between">
       <i className="far fa-image fa-lg my-5 cursor-pointer twitter-text"></i>

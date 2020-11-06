@@ -43,14 +43,22 @@
   overflow: ellipsis;
 
   >a {
+    display: flex;
+    align-items: center;
 
-   >.name {
-    color: black;
-    margin-right: 4px;
-   }
+    >.profilepic {
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+    }
 
-   >.username {
-    color: $t-dark;
-   }
-  }
+    >.name {
+     color: black;
+     margin-right: 4px;
+    }
+
+    >.username {
+     color: $t-dark;
+    }
+  } 
 }

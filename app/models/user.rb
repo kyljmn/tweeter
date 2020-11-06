@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :mentions, dependent: :destroy
   
   has_many :notifications, foreign_key: :user_id, class_name: "Notification", dependent: :destroy
+
+  has_one_attached :profile_picture, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,5 +37,15 @@ class User < ApplicationRecord
 
   def tweeter_handle
     return "@" + self.username
+  end
+
+  def profile_picture_validation
+    if !profile_picture.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:profile_picture, 'needs to be a jpeg or png')
+    end
+
+    if profile_picture.byte_size > 5.megabytes
+      errors[:profile_picture] << "each image should be less than 5MB" 
+    end
   end
 end

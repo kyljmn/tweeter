@@ -4,6 +4,7 @@
     <% end %>
     <div class="info">
       <%= link_to user_path(author), class: "user" do %>
+        <%= render partial:"user/profile_pic", locals: {user: author} %>
         <span class="name"><%= author.full_name %></span>
         <span class="username"><%= author.tweeter_handle %></span>
       <% end %>

@@ -1,17 +1,17 @@
 <%= form_with model: @twit, url: url, local: true, class: "twit-form" do |form| %>
     <% if @twit.errors.any? %>
-    <div class="field">
-      <h2>
-        <%= pluralize(@twit.errors.count, "error") %> prohibited
-        this twit from being saved:
-      </h2>
-      <ul>
-        <% @twit.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="field">
+        <h2>
+          <%= pluralize(@twit.errors.count, "error") %> prohibited
+          this twit from being saved:
+        </h2>
+        <ul>
+          <% @twit.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <div class="field">
     <%= form.text_area :body, class: "input", placeholder: "What's happening?" %>
   </div>

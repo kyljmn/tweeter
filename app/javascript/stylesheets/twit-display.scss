@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: column wrap;
   overflow-y: auto;
-  border-top: 5px solid $t-border;
 }
 
 .twit {
@@ -62,6 +61,12 @@
 .user {
   display: inline-flex;
   flex-flow: row;
+
+  > .profilepic {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+  }
 
   > .name {
     font-weight: bold;

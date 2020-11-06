@@ -8,9 +8,7 @@ module NotificationHelper
   end
 
   def notif_message(notif)
-    if notif.notifiable_type == 'Mention'
-      return "<span class=\"font-bold\">@#{notifying_user(notif).username}</span> mentioned you".html_safe 
-    end
+    return "<span class=\"font-bold\">@#{notifying_user(notif).username}</span> mentioned you".html_safe if notif.notifiable_type == "Mention"
   end
 
   def notif_status(notif)

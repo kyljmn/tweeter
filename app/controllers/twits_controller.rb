@@ -14,7 +14,7 @@ class TwitsController < ApplicationController
       make_mention_hashtag(@twit)
       redirect_to root_path
     else
-      redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
+      redirect_to root_path, alert: @twit.errors.full_messages[0]
     end
   end
 
@@ -47,7 +47,6 @@ class TwitsController < ApplicationController
   end
 
   private
-
     def user_from_params
       @user = User.find(params[:user_id])
     end

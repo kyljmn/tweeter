@@ -1,31 +1,38 @@
-<div class="p-5 w-full" id=<%= twit.id.to_s %>>
+<div class="p-5 w-full border-b hover:bg-gray-100 transition duration-900 ease-in-out" id=<%= twit.id.to_s %>>
   <% if twit.retwit? %>
-    <div class="text-twitterGray text-sm p-1"><i class="fas fa-retweet"></i><%= link_to twit.user.username, user_path(twit.user) %> Retweeted</div>
+    <div class="text-twitterGray text-sm px-1 py-2"><i class="fas fa-retweet"></i><%= link_to twit.user.username, user_path(twit.user) %> Retweeted</div>
   <% end %>
 
   <div class="flex">
-    <i class="fas fa-user-circle fa-2x mr-2"></i>
-    <div class="flex flex-col w-full">  
+    
+      <i class="fas fa-user-circle fa-2x"></i>
+    
+    <div class="flex flex-col w-full mx-2">  
       <div class="flex justify-between">
         <div>
           <%= link_to user_path(author), class: "user" do %>
-            <span class="font-bold"><%= author.full_name %></span>
-            <span class="text-twitterGray"><%= author.tweeter_handle %></span>
+            <span class="font-bold hover:underline"><%= author.full_name %></span>
+            <span class="text-twitterGray hover:underline"><%= author.tweeter_handle %></span>
           <% end %>
         </div>
         <% if author.id == current_user.id %>
-          <%= link_to "x", user_twit_path(author.id, twit), method: :delete, class: "delete" %>
+          <%= link_to user_twit_path(author.id, twit), method: :delete, class: "flex items-center px-2 rounded-full cursor-pointer hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out" do %>
+            <%= image_tag "delete.png", class: "mr-2" %>
+            <span>Delete</span>
+          <% end %>
         <% end %>
       </div>
       <span class="flex"><%= render_body(twit) %></span>
       <%= fetch_images(twit)%>
       
-      <div class="action">  
-        <%= link_to new_reply_twit_path(twit, anchor: "reply") do %>
-          <i class="far fa-comment"></i>
+      <div class="flex py-2">  
+        <%= link_to new_reply_twit_path(twit, anchor: "reply"), class: "flex items-center p-2 mr-5 rounded-full cursor-pointer hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out" do %>
+          <i class="far fa-comment fa-lg"></i>
+          <span>&nbsp;Reply</span>
         <% end %>
-
+      
         <%= render_retwit_action(twit) %>
+     
       </div>
     </div>
   </div>

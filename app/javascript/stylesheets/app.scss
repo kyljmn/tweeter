@@ -26,3 +26,7 @@ body {
 .twitter-color {
   color: '#1da1f2';
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}

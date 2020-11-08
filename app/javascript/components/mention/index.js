@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { MentionsInput, Mention } from 'react-mentions'
 
+const hashtags = [
+  { id: 1, display: '#hashOne' },
+  { id: 2, display: '#hashTwo' },
+  { id: 9, display: '#hashNine' },
+]
+
 const MentionComponent = ({ users }) => {
   const [input, setInput] = useState()
   const [usersArray, setUsersArray] = useState([
@@ -33,9 +39,11 @@ const MentionComponent = ({ users }) => {
         value={input}
         onChange={handleChangeInput}
         placeholder="What's happening?"
-        className="w-full flex items-center text-lg border-none py-5 focus:outline-none"
+        className="w-full flex items-center text-lg border-none py-5 mb-2"
+        singleLine={true}
       >
-        <Mention trigger="@" data={usersArray} markup="@__display__" />
+        <Mention trigger="@" displayTransform={(username) => `@${username}`} data={usersArray} markup="@__display__" />
+        <Mention trigger="#" displayTransform={(hash) => `#${hash}`} data={hashtags} markup="#__display__" />
       </MentionsInput>
 
       <input name="twit[body]" value={input} hidden />

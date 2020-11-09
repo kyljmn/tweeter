@@ -1,6 +1,8 @@
 <div class="flex flex-col w-4/12 my-5 px-5 border-l">
   <div class="w-1/5 py-5 rounded-lg bg-gray-200 fixed">
     <p class="font-bold text-lg px-5">Who to follow</p>
-    <%= render partial:"follow/table", locals: { pager: fetch_new_users}%>
+    <% fetch_to_follow_users.map do |user| %>
+      <%= render partial: "follow/user", locals: { user: user } %>
+    <% end %>
   </div>
 </div>

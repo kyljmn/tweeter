@@ -7,4 +7,8 @@ module UserHelper
   def fetch_current_user
     current_user.profile_picture
   end
+
+  def fetch_to_follow_users
+    @users = User.all.sample(5)
+  end
 end

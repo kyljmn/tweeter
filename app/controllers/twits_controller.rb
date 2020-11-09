@@ -15,7 +15,8 @@ class TwitsController < ApplicationController
       make_mention_hashtag(@twit)
       redirect_to root_path
     else
-      redirect_to root_path, alert: @twit.errors.full_messages[0]
+      redirect_to root_path, flash[:notice] = "invalid tweet"
+      # @twit.errors.full_messages[0]
     end
   end
 

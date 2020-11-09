@@ -2,7 +2,7 @@
   <%= link_to user_path(user) do %>
     <div class="flex">
         <% if user.profile_picture.attached? %>
-        <%= image_tag (url_for(user.profile_picture)), class: "rounded-full bg-cover h-10 w-10 mr-2" %>
+          <%= image_tag (url_for(user.profile_picture)), class: "rounded-full bg-cover h-10 w-10 mr-2" %>
         <% else %>
           <i class="fas fa-user-circle fa-2x mr-4"></i>
         <% end %>

@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { MentionsInput, Mention } from 'react-mentions'
 
-const hashtags = [
-  { id: 1, display: '#hashOne' },
-  { id: 2, display: '#hashTwo' },
-  { id: 9, display: '#hashNine' },
-]
+// const hashtags = [
+//   { id: 1, display: '#hashOne' },
+//   { id: 2, display: '#hashTwo' },
+//   { id: 9, display: '#hashNine' },
+// ]
 
-const MentionComponent = ({ users }) => {
+const MentionComponent = ({ users, hashtags }) => {
   const [input, setInput] = useState()
   const [usersArray, setUsersArray] = useState([
+    {
+      id: '',
+      display: '',
+    },
+  ])
+  const [hashtagsArray, setHashtagsArray] = useState([
     {
       id: '',
       display: '',
@@ -29,9 +35,18 @@ const MentionComponent = ({ users }) => {
     setUsersArray(usersData)
   }
 
+  const createHashtagsArray = () => {
+    const hashtagsData = hashtags.map((value, index) => {
+      return { id: value.id, display: value.name }
+    })
+
+    setHashtagsArray(hashtagsData)
+  }
+
   useEffect(() => {
     createUsersArray()
-  }, [users])
+    createHashtagsArray()
+  }, [users, hashtags])
 
   return (
     <div>
@@ -43,7 +58,7 @@ const MentionComponent = ({ users }) => {
         singleLine={true}
       >
         <Mention trigger="@" displayTransform={(username) => `@${username}`} data={usersArray} markup="@__display__" />
-        <Mention trigger="#" displayTransform={(hash) => `#${hash}`} data={hashtags} markup="#__display__" />
+        <Mention trigger="#" displayTransform={(hash) => `#${hash}`} data={hashtagsArray} markup="#__display__" />
       </MentionsInput>
 
       <input name="twit[body]" value={input} hidden />

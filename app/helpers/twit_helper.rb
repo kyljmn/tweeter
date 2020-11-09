@@ -36,4 +36,8 @@ module TwitHelper
     end
     processed_body.html_safe
   end
+
+  def hashh
+    @hashtags = Hashtag.all
+  end
 end

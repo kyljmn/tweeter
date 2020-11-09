@@ -1,6 +1,6 @@
 "use strict";
 
-require("./../stylesheets/app");
+require("stylesheets/app");
 
 require("controllers");
 

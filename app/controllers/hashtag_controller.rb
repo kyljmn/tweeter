@@ -4,7 +4,7 @@ class HashtagController < ApplicationController
     @pager = PagesService.new("hashtag_index", @hashtag, params.fetch(:page, 1).to_i)
     @hashtags = Hashtag.all
 
-    @tweets = Twit.where(user: @hashtag).paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+    @tweets = @hashtag.twits.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
 
     respond_to do |format|
       format.html

@@ -27,10 +27,9 @@
       <span class="flex"><%= render_body(twit) %></span>
       <%= fetch_images(twit)%>
       
-      <div class="flex py-2">  
+      <div class="flex py-2 items-center">  
         <%= link_to new_reply_twit_path(twit, anchor: "reply"), class: "flex items-center p-2 mr-5 rounded-full cursor-pointer hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out" do %>
           <i class="far fa-comment fa-lg"></i>
-          <span>&nbsp;Reply</span>
         <% end %>
       
         <%= render_retwit_action(twit) %>

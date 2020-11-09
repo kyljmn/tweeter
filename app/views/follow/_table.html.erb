@@ -1,6 +1,3 @@
-<div class="follows-container">
-  <% pager.get_items.map do |user| %>
-    <%= render partial: "follow/user", locals: { user: user } %>
-  <% end %>
-</div>
-<%= render partial:'pagination/pages', locals: { pager: pager} %>
+<% pager.fetch_items.map do |user| %>
+  <%= render partial: "follow/user", locals: { user: user } %>
+<% end %>

@@ -1,11 +1,11 @@
-<div class="header">Notifications</div>
-<div class="page">
-<% if @pager.get_items.any? %>
-  <div class="notifs-container">
-    <% @pager.get_items.map do |notif| %>
+<div class="flex flex-col stretch">
+  <div class="w-full p-5">
+    <p class="font-bold text-lg">Notification</p>
+  </div>
+  <% if @pager.fetch_items.any? %>
+    <% @pager.fetch_items.map do |notif| %>
       <%= render partial: "notification/notif", locals: {notif: notif} %>
     <% end %>
-  </div>
- <%= render partial:'pagination/pages', locals: { pager: @pager} %>
-<% end %>
+  <%= render partial:'pagination/pages', locals: { pager: @pager} %>
+  <% end %>
 </div>

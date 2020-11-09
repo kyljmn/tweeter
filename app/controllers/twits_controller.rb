@@ -1,43 +1,55 @@
 class TwitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_from_params, only: %i[ index show create destroy ]
-  before_action :twit_from_params, only: %i[ show destroy retwit unretwit ]
+  before_action :user_from_params, only: %i[index show create destroy]
+  before_action :auth_guard, only: %i[create destroy]
+  before_action :twit_from_params, only: %i[show destroy retwit unretwit]
+  before_action :reply_to_from_params, only: %i[new_reply create_reply]
 
-  def show
-    render "twits/show", locals: { twit: @twit }
-  end
+  def show; end
 
   def create
     @twit = @user.twits.new(twit_params)
     if @twit.save
       # extract usernames from twit body
       # done after @twit.save so @twit has an id
-      mention_creator
-      redirect_to user_path(@user)
+      make_mention_hashtag(@twit)
+      redirect_to root_path
     else
-      redirect_to user_path(@user, twit: twit_params), alert: @twit.errors.full_messages[0]
+      redirect_to root_path, alert: @twit.errors.full_messages[0]
     end
   end
 
   def destroy
     @twit = Twit.find(params[:id])
     @twit.destroy
-    redirect_to user_path(@user)
+    redirect_to root_path
   end
 
   def retwit
     @retwit = Twit.create(body: @twit.body, user: current_user, retwit_id: @twit.id, owner_id: @twit.user.id)
     @retwit.save
-    redirect_to user_path(current_user)
+    redirect_to root_path
   end
 
   def unretwit
     @retwit = Twit.find_by(twit: @twit, user: current_user)
     @retwit.destroy
-    redirect_to user_path(current_user)
+    redirect_to root_path
+  end
+
+  def new_reply
+    @twit = Twit.new
+  end
+
+  def create_reply
+    # @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user)
+    @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user, images: twit_params["images"])
+    make_mention_hashtag(@twit)
+    redirect_to user_twit_path(current_user, @twit, anchor: @twit.id.to_s)
   end
 
   private
+
     def user_from_params
       @user = User.find(params[:user_id])
     end
@@ -47,16 +59,19 @@ class TwitsController < ApplicationController
     end
 
     def twit_params
-      params.require(:twit).permit(:body)
+      params.require(:twit).permit(:body, images: [])
     end
 
-    def mention_creator
-      mentioned_usernames = twit_params["body"].scan(/@(\w+)/).flatten.uniq
-      if !mentioned_usernames.empty?
-        mentioned_usernames.each do |username|
-          mentioned_user = User.find_by(username: username)
-          @mention = Mention.create(user: mentioned_user, twit: @twit)
-        end
-      end
+    def reply_to_from_params
+      @reply_to = Twit.find(params[:id])
+    end
+
+    def auth_guard
+      redirect_to root_path if @user.id != current_user.id
+    end
+
+    def make_mention_hashtag(twit)
+      MentionsService.mention_creator(twit)
+      HashtagsService.hashtag_creator(twit)
     end
 end

@@ -1,0 +1,4 @@
+<% if twit.reply? %>
+<%= render partial:"twits/twit_reply_to", locals: { twit: twit.reply_to }%>
+<% end %>
+<%= render_twit(twit) %>

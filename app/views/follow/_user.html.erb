@@ -1,15 +1,26 @@
-<div class="user">
-  <div class="identity">
-    <%= link_to user_path(user) do %>
-      <span class="name"><%= user.first_name + " " + user.last_name %></span>
-      <span class="username"><%= "@" + user.username %></span>
+<div class="flex items-center border-t w-full justify-between p-5 hover:bg-gray-100 transition duration-900 ease-in-out cursor-pointer">
+  <%= link_to user_path(user) do %>
+    <div class="flex">
+        <% if user.profile_picture.attached? %>
+          <%= image_tag (url_for(user.profile_picture)), class: "rounded-full bg-cover h-10 w-10 mr-2" %>
+        <% else %>
+          <i class="fas fa-user-circle fa-2x mr-4"></i>
+        <% end %>
+        <div class="flex flex-col"> 
+            <p class="font-bold hover:underline"><%= user.first_name + " " + user.last_name %></p>
+            <p class="text-twitterGray hover:underline"><%= "@" + user.username %></p>
+        </div>
+    </div>
+  <% end %>
+  <div>
+    <% if current_user.followings.exists?(user.id) %>
+      <%= link_to "unfollow", unfollow_user_path(user), method: :delete,
+      class: "rounded-full bg-twitter text-white px-4 py-1 border-none font-bold cursor-pointer transition duration-900 ease-in-out hover:bg-red-700" %>
+    <% elsif current_user.id == user.id %>
+      <%= nil %>
+    <% else %>
+      <%= link_to "follow", follow_user_path(user), method: :post,
+      class: "rounded-full text-twitter px-4 py-1 border border-twitter font-bold cursor-pointer transition duration-900 ease-in-out hover:bg-twitterLight" %>
     <% end %>
   </div>
-  <% if current_user.followings.exists?(user.id) %>
-    <%= link_to "unfollow", unfollow_user_path(user), method: :delete, class: "button -unfollow" %>
-  <% elsif current_user.id == user.id %>
-    <%= nil %>
-  <% else %>
-    <%= link_to "follow", follow_user_path(user), method: :post, class: "button -follow" %>
-  <% end %>
 </div>

@@ -1,7 +1,9 @@
-<div class="header">Home</div>
-<div class="page">
-  <%= render 'twits/form' %>
-  <% if @pager.get_items.any? %>
+<div class="flex flex-col stretch">
+  <div class="w-full p-5">
+    <p class="font-bold text-lg">Home</p>
+  </div>
+  <%= render partial:'twits/form', locals: { url: user_twits_path(current_user.id) } %>
+  <% if @pager.fetch_items.any? %>
     <%= render partial:'twits/table', locals: { pager: @pager }%>
   <% end %>
 </div>

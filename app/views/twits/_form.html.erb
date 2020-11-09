@@ -1,20 +1,24 @@
-<%= form_with model: @twit, url: user_twits_path(current_user.id), local: true, class: "twit-form" do |form| %>
+<%= form_with model: @twit, url: url, local: true, multipart: true, class: "flex w-full py-6 pl-4 pr-6 border-b-8 border-t" do |form| %>
     <% if @twit.errors.any? %>
-    <div class="field">
-      <h2>
-        <%= pluralize(@twit.errors.count, "error") %> prohibited
-        this twit from being saved:
-      </h2>
-      <ul>
-        <% @twit.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= form.text_area :body, class: "input", placeholder: "What's happening?" %>
+      <div class="field">
+        <h2>
+          <%= pluralize(@twit.errors.count, "error") %> prohibited
+          this twit from being saved:
+        </h2>
+        <ul>
+          <% @twit.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if fetch_current_user.attached? %>
+      <%= image_tag fetch_current_user, class: "rounded-full bg-cover h-12 w-12 mr-2" %>
+    <% else %>
+      <i class="fas fa-user-circle fa-2x"></i>
+    <% end %>
+  <div class="flex flex-col w-full px-2"> 
+    <%= react_component("mention/index", users: fetch_new_users, hashtags: hashh, prerender: true) %>
+    <%= react_component("previewImage/index", prerender: true) %>
   </div>
-
-  <%= submit_tag "Twit", class: "button" %> 
 <% end %>

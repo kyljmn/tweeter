@@ -6,11 +6,11 @@ module TwitHelper
   def render_retwit_action(twit)
     if !twit.original.retwits.exists?(user: current_user)
       link_to retwit_twit_path(twit.original), method: :post do
-        content_tag :i, ('<div class="flex items-center p-2 mr-5 rounded-full cursor-pointer hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out"><i class="fa fa-retweet"></i></div>').html_safe
+        content_tag :i, '<div class="flex items-center p-2 mr-5 rounded-full cursor-pointer hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out"><i class="fa fa-retweet"></i></div>'.html_safe
       end
     else
       link_to unretwit_twit_path(twit.original), method: :delete do
-        content_tag :i, ('<div class="flex items-center p-2 mr-5 rounded-full cursor-pointer text-twitter hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out"><i class="fa fa-retweet"></i></div>').html_safe
+        content_tag :i, '<div class="flex items-center p-2 mr-5 rounded-full cursor-pointer text-twitter hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out"><i class="fa fa-retweet"></i></div>'.html_safe
       end
 
       # link_to "Unretwit", unretwit_twit_path(twit.original), method: :delete, class: "button"

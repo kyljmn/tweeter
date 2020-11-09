@@ -2,8 +2,8 @@
   <div class="w-full p-5">
     <p class="font-bold text-lg">Notification</p>
   </div>
-  <% if @pager.get_items.any? %>
-    <% @pager.get_items.map do |notif| %>
+  <% if @pager.fetch_items.any? %>
+    <% @pager.fetch_items.map do |notif| %>
       <%= render partial: "notification/notif", locals: {notif: notif} %>
     <% end %>
   <%= render partial:'pagination/pages', locals: { pager: @pager} %>

@@ -1,5 +1,8 @@
-<div>
-  <% pager.fetch_items.map do |twit| %>
-    <%= render_twit(twit) %>
-  <% end %>
+<div data-controller="infinite-scroll" data-action="scroll@window->infinite-scroll#scroll">
+  <div data-target="infinite-scroll.entries">
+    <%= render "twits/render_table" %>
+  </div>
+  <div data-target="infinite-scroll.pagination">
+    <%= will_paginate @tweets %>
+  </div>
 </div>

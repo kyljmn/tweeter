@@ -1,7 +1,9 @@
-<div class="header">Reply</div>
-<div class="page">
+<div class="flex flex-col stretch">
+  <div class="w-full p-5">
+    <p class="font-bold text-lg">Reply to Tweet</p>
+  </div>
   <%= render partial: "twits/twit_reply_to", locals: { twit: @reply_to } %>
-  <div class="reply" id="reply">
+  <div id="reply">
     <%= render partial: "twits/form", locals: { url: create_reply_twit_path(@reply_to) }%>
   </div>
 </div>

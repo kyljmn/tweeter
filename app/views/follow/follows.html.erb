@@ -1,4 +1,7 @@
-<div class="header"><%= link_to "@" + @user.username + "'s", user_path(@user.id), class: "username" %><%= action %></div>
-<div class="page">
+<div class="flex flex-col stretch">
+  <div class="w-full p-5">
+    <p class="font-bold text-lg"><%= link_to "@" + @user.username + "'s ", user_path(@user.id), class: "username" %><%= action %></p>
+  </div>
   <%= render partial:"follow/table", locals: { pager: @pager }%>
 </div>
+

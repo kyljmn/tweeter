@@ -19,7 +19,7 @@ class PagesService
     when "user_index"
       @query.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     when "notification"
-      Notification.where(user: @query).order(is_read: :asc).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
+      Notification.where(user: @query).order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     when "hashtag_index"
       @query.twits.order(created_at: :desc).offset((@page - 1) * POST_PER_PAGE).limit(POST_PER_PAGE)
     end

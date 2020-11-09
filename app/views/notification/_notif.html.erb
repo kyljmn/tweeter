@@ -1,4 +1,5 @@
-<div class="border-b p-5">
-  <%= notif_link(notif) %>
-  <div class="status"> Status: <%= notif_status(notif) %> </div>
-</div>
+<% if notif.is_read %>
+  <%= link_to notif_message(notif), read_notification_path(notif), method: :patch, class: "border-b p-5 hover:bg-twitterLight cursor-pointer transition duration-900 ease-in-out" %>
+<% else %>
+  <%= link_to notif_message(notif), read_notification_path(notif), method: :patch, class: "border-b p-5 bg-twitterLight hover:bg-twitter cursor-pointer transition duration-900 ease-in-out" %>
+<% end %>

@@ -14,7 +14,7 @@ require('@rails/activestorage').start();
 
 require('channels');
 
-require('stylesheets/app'); // Tailwind CSS
+require('stylesheets/app.scss'); // Tailwind CSS
 // import 'stylesheets/app'
 // Images
 // const images = require.context('../images', true)

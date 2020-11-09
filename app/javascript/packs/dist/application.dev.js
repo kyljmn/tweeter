@@ -1,7 +1,5 @@
 "use strict";
 
-require("stylesheets/app");
-
 require("controllers");
 
 // This file is automatically compiled by Webpack, along with any other files
@@ -17,8 +15,7 @@ require('@rails/activestorage').start();
 require('channels');
 
 require('stylesheets/app'); // Tailwind CSS
-
-
+// import 'stylesheets/app'
 // Images
 // const images = require.context('../images', true)
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -28,6 +25,8 @@ require('stylesheets/app'); // Tailwind CSS
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 // Support component names relative to this directory:
+
+
 var componentRequireContext = require.context('components', true);
 
 var ReactRailsUJS = require('react_ujs');

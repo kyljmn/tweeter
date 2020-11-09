@@ -10,7 +10,7 @@ require('channels')
 require('stylesheets/app')
 
 // Tailwind CSS
-import 'stylesheets/app'
+// import 'stylesheets/app'
 
 // Images
 // const images = require.context('../images', true)

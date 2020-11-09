@@ -42,7 +42,8 @@ class TwitsController < ApplicationController
   end
 
   def create_reply
-    @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user)
+    # @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user)
+    @twit = Twit.create(body: twit_params["body"], reply_to: @reply_to, user: current_user, images: twit_params["images"])
     make_mention_hashtag(@twit)
     redirect_to user_twit_path(current_user, @twit, anchor: @twit.id.to_s)
   end

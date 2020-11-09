@@ -14,13 +14,13 @@ class FollowController < ApplicationController
 
   def follow
     @follow = Follow.create({ follower: current_user, following: @user })
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
 
   def unfollow
     @follow = Follow.find_by("follower_id = ? AND following_id = ?", current_user.id, @user.id)
     @follow.destroy
-    redirect_to root_path
+    redirect_to user_path(current_user)
   end
 
   private

@@ -12,8 +12,6 @@ module TwitHelper
       link_to unretwit_twit_path(twit.original), method: :delete do
         content_tag :i, '<div class="flex items-center p-2 mr-5 rounded-full cursor-pointer text-twitter hover:bg-twitterLight hover:text-twitter transition duration-900 ease-in-out"><i class="fa fa-retweet"></i></div>'.html_safe
       end
-
-      # link_to "Unretwit", unretwit_twit_path(twit.original), method: :delete, class: "button"
     end
   end
 
@@ -32,7 +30,7 @@ module TwitHelper
     end
     twit.original.hashtags.each do |hashtag|
       processed_body = processed_body.gsub(/##{hashtag.name}\b/i) do
-        "<a href='/hashtag/#{hashtag.id}' class='text-twitter hover:underline' >#{Regexp.last_match}&nbsp;</a>"
+        "<a href='/hashtag/#{hashtag.id}' class='text-twitter hover:underline'>&nbsp;#{Regexp.last_match}&nbsp;</a>"
       end
     end
     processed_body.html_safe

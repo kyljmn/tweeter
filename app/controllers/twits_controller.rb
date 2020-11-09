@@ -1,6 +1,7 @@
 class TwitsController < ApplicationController
   before_action :authenticate_user!
   before_action :user_from_params, only: %i[index show create destroy]
+  before_action :auth_guard, only: %i[create destroy]
   before_action :twit_from_params, only: %i[show destroy retwit unretwit]
   before_action :reply_to_from_params, only: %i[new_reply create_reply]
 
@@ -47,6 +48,7 @@ class TwitsController < ApplicationController
   end
 
   private
+
     def user_from_params
       @user = User.find(params[:user_id])
     end
@@ -61,6 +63,10 @@ class TwitsController < ApplicationController
 
     def reply_to_from_params
       @reply_to = Twit.find(params[:id])
+    end
+
+    def auth_guard
+      redirect_to root_path if @user.id != current_user.id
     end
 
     def make_mention_hashtag(twit)

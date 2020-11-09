@@ -16,9 +16,9 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {
-        render json: { entries: render_to_string(partial: "twits/render_table", formats: [:html]), pagination: view_context.will_paginate(@tweets)}
-      }
+      format.json do
+        render json: { entries: render_to_string(partial: "twits/render_table", formats: [:html]), pagination: view_context.will_paginate(@tweets) }
+      end
     end
   end
 
